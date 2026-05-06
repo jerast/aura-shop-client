@@ -31,7 +31,7 @@
 	}
 	.Navbar__logo svg,
 	.Navbar__logo img {
-		@apply h-10 md:h-11 2xl:h-12 fill-gray-700;
+		@apply h-10 md:h-11 2xl:h-12 fill-violet-600;
 	}
 	.Navbar__nav {
 		@apply flex-grow hidden xl:flex justify-center lg:gap-8 2xl:gap-12;

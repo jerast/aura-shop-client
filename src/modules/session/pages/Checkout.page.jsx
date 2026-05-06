@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { startSavingOrder } from '@/store';
+import { startLoadingCategories, startLoadingProducts, startSavingOrder } from '@/store';
 import { CheckoutProductCard } from '@/modules/session';
 import { currencyFormatter } from '@/helpers';
 
@@ -10,6 +10,13 @@ export const Checkout = () => {
    const { isLoading, isSaving, order, shoppingCart } = useSelector( state => state.app );
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		(async () => {
+			await dispatch( startLoadingProducts() );
+			await dispatch( startLoadingCategories() );
+		})()
+	}, [])
 	
 	useEffect(() => {
 		( !isLoading && !shoppingCart.length ) && navigate('/', { replace: true })
