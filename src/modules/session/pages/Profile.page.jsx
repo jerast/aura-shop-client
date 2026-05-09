@@ -78,13 +78,13 @@ export const ProfilePage = () => {
 
       try {
          const { data } = await shopApi.put(`/users/${user.id}`, {
-            name: formState.name,
-            surname: formState.surname,
-            dniType: formState.dniType,
-            dniNumber: formState.dniNumber,
-            gender: formState.gender,
-            birthday: formState.birthday,
-            phone: formState.phone,
+            name: formState.name || undefined,
+            surname: formState.surname || undefined,
+            dniType: formState.dniType || undefined,
+            dniNumber: formState.dniNumber || undefined,
+            gender: formState.gender || undefined,
+            birthday: formState.birthday || undefined,
+            phone: formState.phone || undefined,
          });
 
          if (data.ok) {
