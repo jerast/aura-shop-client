@@ -8,7 +8,8 @@ const pathNames = {
    categories: { path: '/categories', name: 'Categorías' },
    account: { path: '/account/profile', name: 'Perfil' },
    orders: { path: '/account/orders', name: 'Mis Pedidos'},
-   contact: { path: '/contact', name: 'Contacto' }
+   contact: { path: '/contact', name: 'Contacto' },
+   profile: { path: '/account/profile', name: 'Perfil' }
 }
 
 export const Breadcrubs = () => {
