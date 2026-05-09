@@ -21,9 +21,42 @@
 	.OrdersPage__loading-row:last-child {
 		@apply border-b-0;
 	}
-	.OrdersPage__loading-row span {
+.OrdersPage__loading-row span {
 		@apply h-5 bg-gray-100 rounded animate-pulse;
 	}
+
+	/* Order Page Loading */
+	.OrderPage__loading {
+		@apply grid gap-6 lg:grid-cols-[400px_1fr];
+	}
+	.OrderPage__loading-card {
+		@apply bg-white rounded-2xl shadow-sm p-6 h-fit;
+	}
+	.OrderPage__loading-header {
+		@apply flex justify-between items-center mb-6 pb-4 border-b;
+	}
+	.OrderPage__loading-header span {
+		@apply h-6 bg-gray-200 rounded animate-pulse;
+	}
+	.OrderPage__loading-row {
+		@apply flex justify-between items-center py-3;
+	}
+	.OrderPage__loading-row span {
+		@apply h-4 bg-gray-100 rounded animate-pulse;
+	}
+	.OrderPage__loading-products {
+		@apply bg-white rounded-2xl shadow-sm p-6;
+	}
+	.OrderPage__loading-product {
+		@apply flex items-center gap-4 p-4;
+	}
+	.OrderPage__loading-product-info {
+		@apply flex flex-col gap-2 flex-1;
+	}
+	.OrderPage__loading-product-info span {
+		@apply h-5 bg-gray-100 rounded animate-pulse;
+	}
+
 
 	/* Home Page */
 

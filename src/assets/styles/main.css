@@ -505,10 +505,150 @@
 
 
 
-	/* Order Page / Checkout Page */
+	/* Order Page */
 
+	.OrderPage__header {
+		@apply mb-6;
+	}
+	.OrderPage__back {
+		@apply inline-flex items-center gap-2 text-gray-500 hover:text-violet-700 transition-colors mb-4;
+	}
+	.OrderPage__back svg {
+		@apply text-lg;
+	}
+	.OrderPage__back span {
+		@apply text-sm font-medium;
+	}
+	.OrderPage__title {
+		@apply text-2xl md:text-3xl font-bold text-gray-800;
+	}
+	.OrderPage__content {
+		@apply grid gap-6 lg:grid-cols-[400px_1fr];
+	}
+
+	/* Resume Card */
+	.OrderPage__resume {
+		@apply bg-white rounded-2xl shadow-sm p-6 h-fit;
+	}
+	.OrderPage__resume-header {
+		@apply flex items-center gap-3 mb-6 pb-4 border-b;
+	}
+	.OrderPage__resume-header h2 {
+		@apply text-lg font-bold text-gray-800;
+	}
+	.OrderPage__info-grid {
+		@apply grid gap-4;
+	}
+	.OrderPage__info-item {
+		@apply flex items-center gap-4;
+	}
+	.OrderPage__info-icon {
+		@apply w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-500;
+	}
+	.OrderPage__info-content {
+		@apply flex flex-col;
+	}
+	.OrderPage__info-label {
+		@apply text-xs text-gray-400;
+	}
+	.OrderPage__info-value {
+		@apply text-sm font-semibold text-gray-800;
+	}
+	.OrderPage__info-item--discount .OrderPage__info-icon {
+		@apply bg-green-100 text-green-600;
+	}
+	.OrderPage__info-value--discount {
+		@apply text-green-600;
+	}
+	.OrderPage__divider {
+		@apply h-px bg-gray-200 my-6;
+	}
+	.OrderPage__total {
+		@apply flex items-center justify-between mb-4;
+	}
+	.OrderPage__total-label {
+		@apply text-gray-500 font-medium;
+	}
+	.OrderPage__total-value {
+		@apply text-2xl font-bold text-gray-800;
+	}
+	.OrderPage__status {
+		@apply flex items-center justify-between;
+	}
+	.OrderPage__status-label {
+		@apply text-sm text-gray-500;
+	}
+	.OrderPage__status-badge {
+		@apply px-3 py-1.5 rounded-full text-sm font-semibold border;
+	}
+
+	/* Products List */
+	.OrderPage__products {
+		@apply bg-white rounded-2xl shadow-sm p-6;
+	}
+	.OrderPage__products-header {
+		@apply flex items-center gap-3 mb-6 pb-4 border-b;
+	}
+	.OrderPage__products-header h2 {
+		@apply text-lg font-bold text-gray-800;
+	}
+	.OrderPage__products-list {
+		@apply grid gap-4;
+	}
+	.OrderPage__product {
+		@apply flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors;
+	}
+	.OrderPage__product-image {
+		@apply w-16 h-16 rounded-lg object-cover bg-gray-200;
+	}
+	.OrderPage__product-info {
+		@apply flex flex-col gap-1 flex-1 min-w-0;
+	}
+	.OrderPage__product-name {
+		@apply text-sm font-medium text-gray-800 hover:text-violet-700 truncate;
+	}
+	.OrderPage__product-quantity {
+		@apply text-xs text-gray-500;
+	}
+	.OrderPage__product-price {
+		@apply text-base font-bold text-gray-800;
+	}
+
+	/* Order Page Loading */
+	.OrderPage__loading {
+		@apply grid gap-6 lg:grid-cols-[400px_1fr];
+	}
+	.OrderPage__loading-card {
+		@apply bg-white rounded-2xl shadow-sm p-6 h-fit;
+	}
+	.OrderPage__loading-header {
+		@apply flex justify-between items-center mb-6 pb-4 border-b;
+	}
+	.OrderPage__loading-header span {
+		@apply h-6 bg-gray-200 rounded animate-pulse;
+	}
+	.OrderPage__loading-row {
+		@apply flex justify-between items-center py-3;
+	}
+	.OrderPage__loading-row span {
+		@apply h-4 bg-gray-100 rounded animate-pulse;
+	}
+	.OrderPage__loading-products {
+		@apply bg-white rounded-2xl shadow-sm p-6;
+	}
+	.OrderPage__loading-product {
+		@apply flex items-center gap-4 p-4;
+	}
+	.OrderPage__loading-product-info {
+		@apply flex flex-col gap-2 flex-1;
+	}
+	.OrderPage__loading-product-info span {
+		@apply h-5 bg-gray-100 rounded animate-pulse;
+	}
+
+	/* Old styles - keeping for Checkout (to be refactored later) */
 	.OrderConfirm {
-		@apply grid grid-flow-dense gap-10 lg:gap-14 2xl:gap-20 
+		@apply grid grid-flow-dense gap-10 lg:gap-14 2xl:gap-20;
 	}
 	.OrderConfirm--checkout {
 		@apply xl:grid-cols-[minmax(600px,auto)_minmax(300px,400px)];
@@ -517,16 +657,10 @@
 		@apply xl:grid-cols-[minmax(300px,400px)_minmax(600px,auto)];
 	}
 	.OrderConfirm__list {
-		@apply h-fit
+		@apply h-fit;
 	}
 	.OrderConfirm__resume {
-		@apply bg-gray-100 rounded-2xl /* shadow-lg */ h-fit;
-	}
-	.OrderConfirm__list {
-		@apply grid gap-4 md:gap-6 p-4 md:p-6 lg:pr-8;
-	}
-	.OrderConfirm__resume {
-		@apply grid gap-y-4 md:gap-y-8 p-4;
+		@apply bg-gray-100 rounded-2xl h-fit;
 	}
 	.OrderConfirm__resume table {
 		@apply table-auto border-separate border-spacing-2 md:border-spacing-4 font-semibold text-gray-500;
@@ -535,7 +669,7 @@
 		@apply text-lg md:text-xl text-gray-800;
 	}
 	.OrderConfirm__resume tbody {
-		@apply text-sm md:text-base
+		@apply text-sm md:text-base;
 	}
 	.OrderConfirm__resume table tr td:nth-child(2) {
 		@apply text-end;
