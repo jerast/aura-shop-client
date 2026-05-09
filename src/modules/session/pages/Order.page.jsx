@@ -3,7 +3,14 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearActiveOrder, onLoadEnds, onLoadStarts, startLoadingSelectedOrder } from '@/store';
 import { OrderProductCard } from '@/modules/session';
-import { currencyFormatter, dateFormatter } from '@/helpers';
+import { cn, currencyFormatter, dateFormatter } from '@/helpers';
+
+const statusConfig = {
+  pending: { label: "Pendiente", className: "bg-amber-100 text-amber-700" },
+  ready: { label: "Listo", className: "bg-sky-100 text-sky-700" },
+  delivered: { label: "Entregado", className: "bg-emerald-100 text-emerald-700" },
+  canceled: { label: "Cancelado", className: "bg-rose-100 text-rose-700" },
+}
 
 export const OrderPage = () => {
 	const { id } = useParams();
@@ -90,7 +97,11 @@ export const OrderPage = () => {
 							</tr>
 							<tr className="OrderConfirm__state">
 								<td>State</td>
-								<td className="flex justify-end"><span className={`OrderCard__state ${ handleOrderStateClass() }`}>{ activeOrder.state }</span></td>
+								<td className="flex justify-end">
+									<span className={cn("inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium", statusConfig[activeOrder.status].className)}>
+											{statusConfig[activeOrder.status].label}
+									</span>
+								</td>
 							</tr>
 						</tbody>
 					</table>

@@ -7,9 +7,8 @@ export const AppRoutes = () => {
 
 	return (
 		<Routes>
+			<Route path="/account/*" element={<UserRoutes />} />
 			<Route path="/*" element={ <PublicRoutes /> } /> 
-			{!localStorage.getItem('aura-shop-token') && <Route path="/account/*" element={<UserRoutes />} />}
-			<Route path="*" element={ <h1>Not Found</h1> } />
 		</Routes>
 	);
 };

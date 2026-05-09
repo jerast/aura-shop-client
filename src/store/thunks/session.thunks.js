@@ -98,6 +98,22 @@ export const startLoadingOrders = () =>
 		}
 	};
 
+export const startCancelOrderStatus = (orderId) =>
+	async (dispatch) => {
+		try {
+			const { data } = await shopApi.put(`/orders/${orderId}`, { newStatus: 'canceled' });
+
+			if ( data.ok ) {
+				dispatch( startLoadingOrders() );
+			}
+
+			return data.ok;
+		} catch (error) {
+			console.error( 'Something fails at cancel order' );
+			return false;
+		}
+	};
+
 export const startSavingOrder = () => 
 	async (dispatch, getState) => {
 		const { user } = getState().session;
@@ -141,3 +157,4 @@ export const startSavingOrder = () =>
 
 		dispatch( onSaveEnds() );
 	};
+

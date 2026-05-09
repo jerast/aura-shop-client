@@ -1,7 +1,9 @@
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { cn, currencyFormatter, dateFormatter } from '@/helpers';
+import { cn, currencyFormatter, dateFormatter, toCapitalize } from '@/helpers';
 import { Search, ChevronDown, Eye, MoreHorizontal, X } from 'lucide-react'
-
+import { startCancelOrderStatus } from '@/store';
+import { useDispatch } from 'react-redux';
 
 const statusConfig = {
   pending: { label: "Pendiente", className: "bg-amber-100 text-amber-700" },
@@ -11,16 +13,18 @@ const statusConfig = {
 }
 
 export const OrderCard = ({ order }) => {
-   console.log(order);
+   const [userMenuOpen, setUserMenuOpen] = useState(false)
+   const userMenuRef = useRef(null)
+   const dispatch = useDispatch();
    
    return (
       <tr key={order.id} className="border-b border-border last:border-0 transition-colors hover:bg-secondary/30">
          <td className="px-6 py-4">
             <span className="font-medium text-foreground">{order.id}</span>
          </td>
-         <td className="px-6 py-4 text-sm text-muted-foreground">{order.date}</td>
+         <td className="px-6 py-4 text-sm text-muted-foreground">{dateFormatter(order.date)}</td>
          <td className="px-6 py-4 text-sm tabular-nums text-foreground">{order.list.reduce((accum, item) => accum + item.count, 0)}</td>
-         <td className="px-6 py-4 text-sm font-medium tabular-nums text-foreground">{order.total_price}</td>
+         <td className="px-6 py-4 text-sm font-medium tabular-nums text-foreground">{currencyFormatter(order.total_price)}</td>
          <td className="px-6 py-4">
             <span className={cn("inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium", statusConfig[order.status].className)}>
                {statusConfig[order.status].label}
@@ -36,14 +40,33 @@ export const OrderCard = ({ order }) => {
                >
                   <Eye className="h-4 w-4 text-muted-foreground" />
                </Link>
-               <button
-                  type="button"
-                  onClick={() => cycleStatus(order)}
-                  className="rounded-lg p-2 transition-colors hover:bg-muted"
-                  aria-label={`Cambiar estado de ${order.id}`}
-               >
-                  <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
-               </button>
+               {
+                  order.status !== 'canceled' && 
+                  <div ref={userMenuRef} className='relative'>
+                     <button
+                        type="button"
+                        onClick={() => setUserMenuOpen(!userMenuOpen)}
+                        className="rounded-lg p-2 transition-colors hover:bg-muted"
+                        aria-label={`Cambiar estado de ${order.id}`}
+                        
+                     >
+                        <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
+                     </button>
+                     {userMenuOpen && (
+                        <div className="absolute w-[160px] bottom-full right-0 mb-2 bg-white rounded-lg border border-border shadow-lg">
+                        <button 
+                           onClick={() => {
+                              setUserMenuOpen(false)
+                              dispatch( startCancelOrderStatus(order._id));
+                           }}
+                           className="w-full flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-[#F5F3FF] transition-colors"
+                        >
+                           Cancelar pedido
+                        </button>
+                        </div>
+                     )}
+                  </div>
+               }
             </div>
          </td>
       </tr>
