@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { resize } from '@/helpers';
+import { EmptyState } from '@/interface';
 
 export const CategoriesPage = () => {
 
 	const { isLoading } = useSelector( state => state.app );
 	const { categories } = useSelector( state => state.shop );
+	console.log(categories);
+
 
 	if ( isLoading ) return (
 		<section className="Section">
@@ -16,6 +19,15 @@ export const CategoriesPage = () => {
 				<a><span /></a> 
 				<a><span /></a> 
 			</article>
+		</section>
+	);
+
+	
+
+	if ( !categories.length ) return (
+		<section className="Section">
+			<h1 className="Section__title">Categorías</h1>
+			<EmptyState type="categories" />
 		</section>
 	);
 

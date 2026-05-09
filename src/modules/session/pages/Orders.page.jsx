@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { OrderCard } from '@/modules/session'
+import { EmptyState } from '@/interface'
 
 export const OrdersPage = () => {
 	const { orders } = useSelector( state => state.session )
@@ -9,14 +10,19 @@ export const OrdersPage = () => {
 	if ( isLoading ) return (
 		<section className="Section">
 			<h1 className="Section__title">Mis pedidos</h1>
-			<h4>Cargando...</h4>
+			<article className="Section__content loading">
+				<a><span /></a> 
+				<a><span /></a> 	
+				<a><span /></a> 
+				<a><span /></a> 
+			</article>
 		</section>
 	)
 	
 	if ( !orders.length ) return (
 		<section className="Section">
 			<h1 className="Section__title">Mis pedidos</h1>
-			<h4>No tienes pedidos aún...</h4>
+			<EmptyState type="orders" showAction />
 		</section>
 	)
 

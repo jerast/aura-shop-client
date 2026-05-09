@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState, useEffect, useMemo } from 'react';
-import { ProductCard } from '@/modules/shop';
+import { ProductCard, FilterPanel } from '@/modules/shop';
+import { EmptyState } from '@/interface';
 import { filters, queryParams, sorters, toCapitalize } from '@/helpers';
-import { FilterPanel } from '@/modules/shop';
 import { applyFilters, getPriceRanges } from '@/helpers/productFilters';
 
 export const ProductsPage = () => {
@@ -107,7 +107,7 @@ export const ProductsPage = () => {
 					onPriceTypeChange={handlePriceTypeChange}
 				/>
 			</div>
-			<h3>No se encontraron productos</h3>
+			<EmptyState type="products" />
 		</section>
 	);
 
@@ -126,7 +126,11 @@ export const ProductsPage = () => {
 				/>
 			</div>
 			{filteredProducts.length === 0 ? (
-				<p className="text-gray-500 mt-4">No hay productos que coincidan con los filtros.</p>
+				<EmptyState 
+					type="products"
+					title="Sin resultados"
+					description="No hay productos que coincidan con los filtros aplicados."
+				/>
 			) : (
 				<article className="ProductList">
 				{

@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { cn, currencyFormatter, dateFormatter, toCapitalize } from '@/helpers';
-import { Search, ChevronDown, Eye, MoreHorizontal, X } from 'lucide-react'
+import { MdVisibility, MdMoreVert } from 'react-icons/md';
 import { startCancelOrderStatus } from '@/store';
 import { useDispatch } from 'react-redux';
 
@@ -38,7 +38,7 @@ export const OrderCard = ({ order }) => {
                   className="rounded-lg p-2 transition-colors hover:bg-muted"
                   aria-label={`Ver ${order.id}`}
                >
-                  <Eye className="h-4 w-4 text-muted-foreground" />
+                  <MdVisibility className="text-xl text-muted-foreground" />
                </Link>
                {
                   order.status !== 'canceled' && 
@@ -50,7 +50,7 @@ export const OrderCard = ({ order }) => {
                         aria-label={`Cambiar estado de ${order.id}`}
                         
                      >
-                        <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
+                        <MdMoreVert className="text-xl text-muted-foreground" />
                      </button>
                      {userMenuOpen && (
                         <div className="absolute w-[160px] bottom-full right-0 mb-2 bg-white rounded-lg border border-border shadow-lg">

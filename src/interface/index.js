@@ -10,3 +10,4 @@ export * from './Search';
 // Components
 export * from './components/ShoppingCartItem';
 export * from './components/DropdownButton';
+export * from './components/EmptyState';
