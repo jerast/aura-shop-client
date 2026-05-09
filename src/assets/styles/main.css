@@ -330,21 +330,24 @@
 		@apply font-bold text-2xl lg:text-4xl text-gray-800;
 	}
 	.Section__content--categories {
-		@apply grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 w-full;
+		@apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 w-full;
 	}
 	.Section__content--products {
-		@apply grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6 lg:gap-8 w-full;
+		@apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 lg:gap-8 w-full;
 	}
 
 	.Category {
-		@apply relative aspect-square overflow-hidden rounded-2xl lg:rounded-2xl hover:shadow-xl shadow-md shadow-gray-300;
+		@apply relative aspect-square overflow-hidden rounded-2xl hover:shadow-2xl shadow-lg hover:scale-[1.02] hover:z-10 transition-all duration-300 ease-out;
 	}
 	.Category__image {
-		@apply h-full w-full object-cover object-center;
+		@apply h-full w-full object-cover object-center transition-transform duration-300;
+	}
+	.Category:hover .Category__image {
+		@apply scale-110;
 	}
 	.Category__caption {
-		@apply absolute h-full w-full bg-black bg-opacity-30 top-0 grid place-items-center text-white font-bold
-		text-2xl sm:text-4xl md:text-2xl xl:text-4xl;
+		@apply absolute h-full w-full bg-gradient-to-t from-black/70 via-black/20 to-transparent top-0 grid place-items-end justify-center pb-6 text-white font-bold
+		text-2xl sm:text-3xl md:text-2xl xl:text-3xl;
 	}
 
 
@@ -415,25 +418,31 @@
 	}
 
 	.ProductCard {
-		@apply flex flex-col h-auto gap-3;
+		@apply flex flex-col h-auto gap-3 p-3 sm:p-4 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 ease-out;
+	}
+	.ProductCard:hover {
+		@apply scale-[1.02] z-10;
 	}
 	.ProductCard__image {
-		@apply w-full aspect-square rounded-xl object-cover object-center bg-gray-200 bg-opacity-70 /* shadow-md */
+		@apply w-full aspect-square rounded-xl object-cover object-center bg-gray-200 transition-transform duration-300;
+	}
+	.ProductCard:hover .ProductCard__image {
+		@apply scale-105;
 	}
 	.ProductCard__info {
-		@apply flex-grow;
+		@apply flex-grow flex flex-col gap-1;
 	}
 	.ProductCard__name {
-		@apply block leading-[20px] text-sm text-gray-600 truncate;
+		@apply block leading-[20px] text-sm font-medium text-gray-700 hover:text-violet-600 transition-colors duration-150 line-clamp-2;
 	}
 	.ProductCard__prices {
-		@apply mt-1 flex;
+		@apply mt-2 flex flex-col gap-0.5;
 	}
 	.ProductCard__prices span:nth-child(1) {
-		@apply text-sm font-bold mr-2 text-violet-600 flex items-center gap-1;
+		@apply text-base sm:text-lg font-bold text-violet-700 flex items-center gap-1;
 	}
 	.ProductCard__prices span:nth-child(2) {
-		@apply text-xs font-semibold text-gray-400 mt-[2px] md:mt-[1px];
+		@apply text-xs sm:text-sm font-medium text-gray-400 line-through;
 	}
 	.ProductCard__button {
 		@apply flex justify-center self-start;

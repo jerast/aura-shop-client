@@ -51,7 +51,7 @@ export const HomePage = () => {
 							<Link 
 								key={ category.id }
 								className="Category fluid" 
-								to={`/${ category.name.toLowerCase() }`}
+								to={`/categories/${ category.name.toLowerCase() }`}
 							>
 								<img 
 									className="Category__image fluid"
