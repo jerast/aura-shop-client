@@ -35,6 +35,25 @@ export const Sidebar = () => {
 		navigate('/login', { replace: true });
 	};
 
+	const handleSetInitials = () => {
+		const { name, surname, email } = user;
+
+		if (name && surname) {
+			return `${name[0]}${surname[0]}`.toUpperCase();
+		}
+
+		if (name) {
+			return name.slice(0, 2).toUpperCase();
+		}
+
+		if (email) {
+			const emailInitials = email.split('@')[0].slice(0, 2);
+			return emailInitials.toUpperCase();
+		}
+
+		return 'U';
+	};
+
    return (
       (isShow) && (
 			<div className="Sidebar">
@@ -60,7 +79,7 @@ export const Sidebar = () => {
 									( isLoading || status === 'checking' )
 									? 	<RiLoader4Line className="animate-spin text-2xl"/>
 									: 	( status === 'auth' ) 
-										? user.name[0]+user.surname[0]
+										? handleSetInitials()
 										: <FaRegUser /> 
 								}
 							</span>
@@ -81,7 +100,7 @@ export const Sidebar = () => {
 					{
 						(!isLoading && status === 'auth') && (
 							<ul className="Sidebar__group">
-								<li><NavLink onClick={ handleCloseSidebar } to="/account">Mi cuenta</NavLink></li>
+								<li><NavLink onClick={ handleCloseSidebar } to="/account/profile">Mi cuenta</NavLink></li>
 								<li><NavLink onClick={ handleCloseSidebar } to="/account/orders">Mis pedidos</NavLink></li>
 							</ul>
 						)

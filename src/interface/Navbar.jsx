@@ -22,6 +22,25 @@ export const Navbar = () => {
 		dispatch(startLogout());
 	};
 
+	const handleSetInitials = () => {
+		const { name, surname, email } = user;
+
+		if (name && surname) {
+			return `${name[0]}${surname[0]}`.toUpperCase();
+		}
+
+		if (name) {
+			return name.slice(0, 2).toUpperCase();
+		}
+
+		if (email) {
+			const emailInitials = email.split('@')[0].slice(0, 2);
+			return emailInitials.toUpperCase();
+		}
+
+		return 'U';
+	};
+
 	return (
 		<nav className="Navbar">
 			<button 
@@ -75,14 +94,14 @@ export const Navbar = () => {
 							( isLoading || status === 'checking' )
 							? 	<RiLoader4Line className="animate-spin text-2xl"/>
 							: 	( status === 'auth' ) 
-								? user.name[0]+user.surname[0]
+								? handleSetInitials()
 								: <FaRegUser /> 
 						}
 					</span>
 					<div className="Navbar__controls-login-dropdown">
 						<ul>
-							{/* <li><Link to='/account'>My Account</Link></li> */}
 							<li><Link to='/account/profile'>Mi perfil</Link></li>
+							<li><Link to='/account/orders'>Mis pedidos</Link></li>
 						</ul>
 						<ul>
 							<li><span onClick={ handleLogout }>Cerrar sesión</span></li>

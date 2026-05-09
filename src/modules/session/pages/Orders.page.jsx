@@ -4,7 +4,7 @@ import { OrderCard } from '@/modules/session'
 export const OrdersPage = () => {
 	const { orders } = useSelector( state => state.session )
 	
-	const { isLoading, isSaving } = useSelector( state => state.app )
+	const { isLoading } = useSelector( state => state.app )
 	
 	if ( isLoading ) return (
 		<section className="Section">
@@ -22,7 +22,7 @@ export const OrdersPage = () => {
 
 	return (
 		<section className="Section">
-			<h1 className="Section__title">My Orders</h1>
+			<h1 className="Section__title">Mis pedidos</h1>
 			<article className="Section__content OrderList">
 				<div className="overflow-hidden rounded-2xl border border-border bg-card">
 					<div className="overflow-x-auto">

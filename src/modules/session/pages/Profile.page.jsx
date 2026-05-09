@@ -20,7 +20,7 @@ const initialFormState = {
    dniType: '',
    dniNumber: '',
    gender: '',
-   birthdate: '',
+   birthday: '',
    phone: '',
 };
 
@@ -44,7 +44,7 @@ export const ProfilePage = () => {
             dniType: user.dniType || '',
             dniNumber: user.dniNumber || '',
             gender: user.gender || '',
-            birthdate: user.birthdate || '',
+            birthday: user.birthday || '',
             phone: user.phone || '',
          });
       }
@@ -61,7 +61,7 @@ export const ProfilePage = () => {
          dniType: user.dniType || '',
          dniNumber: user.dniNumber || '',
          gender: user.gender || '',
-         birthdate: user.birthdate || '',
+         birthday: user.birthday || '',
          phone: user.phone || '',
       };
 
@@ -83,7 +83,7 @@ export const ProfilePage = () => {
             dniType: formState.dniType,
             dniNumber: formState.dniNumber,
             gender: formState.gender,
-            birthdate: formState.birthdate,
+            birthday: formState.birthday,
             phone: formState.phone,
          });
 
@@ -125,7 +125,6 @@ export const ProfilePage = () => {
                      label="Nombre"
                      value={ formState.name }
                      onChange={ onFormChange }
-                     required
                   />
                   <ProfileField
                      type="text"
@@ -133,7 +132,6 @@ export const ProfilePage = () => {
                      label="Apellido"
                      value={ formState.surname }
                      onChange={ onFormChange }
-                     required
                   />
                </div>
 
@@ -178,9 +176,9 @@ export const ProfilePage = () => {
                   />
                   <ProfileField
                      type="date"
-                     name="birthdate"
+                     name="birthday"
                      label="Fecha de nacimiento"
-                     value={ formState.birthdate }
+                     value={ formState.birthday }
                      onChange={ onFormChange }
                   />
                </div>

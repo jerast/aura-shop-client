@@ -6,7 +6,7 @@ export const UserRoutes = () => {
 
 	return (
 		<Routes>
-			<Route path="/" element={ <h1>MyAccount</h1> } />
+			<Route path="/" element={ <Navigate to="/account/profile" replace /> } />
 			<Route path="/profile" element={ <ProfilePage /> } />
 			<Route path="/orders" element={ <OrdersPage /> } />
 			<Route path="/orders/checkout" element={ <Checkout /> } />

@@ -27,6 +27,7 @@ export const startVerifyingSession = () =>
 
       try {
          const { data } = await shopApi.get('/users/jwt');
+				 console.log(data);
 			
          localStorage.setItem( 'aura-shop-token', data.token );
 
