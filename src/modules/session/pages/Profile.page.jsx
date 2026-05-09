@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useState, useEffect, useMemo } from 'react';
+import { shopApi } from '@/api';
 import { ProfileField } from '@/modules/session';
 import { useForm } from '@/hooks';
 
@@ -11,13 +12,14 @@ const documentTypes = [
 const genderOptions = [
    { value: 'M', label: 'Masculino' },
    { value: 'F', label: 'Femenino' },
+   { value: 'O', label: 'Otro' },
 ];
 
 const initialFormState = {
    name: '',
    surname: '',
-   email: '',
-   document_type: '',
+   dniType: '',
+   dniNumber: '',
    gender: '',
    birthdate: '',
    phone: '',
@@ -40,15 +42,16 @@ export const ProfilePage = () => {
          setFormState({
             name: user.name || '',
             surname: user.surname || '',
-            email: user.email || '',
-            document_type: user.document_type || '',
+            dniType: user.dniType || '',
+            dniNumber: user.dniNumber || '',
             gender: user.gender || '',
             birthdate: user.birthdate || '',
             phone: user.phone || '',
          });
-         console.log(user);
       }
    }, [user]);
+
+   const email = user?.email || '';
 
    const hasChanges = useMemo(() => {
       if (!user || !user.id) return false;
@@ -56,7 +59,8 @@ export const ProfilePage = () => {
       const userFields = {
          name: user.name || '',
          surname: user.surname || '',
-         document_type: user.document_type || '',
+         dniType: user.dniType || '',
+         dniNumber: user.dniNumber || '',
          gender: user.gender || '',
          birthdate: user.birthdate || '',
          phone: user.phone || '',
@@ -74,14 +78,15 @@ export const ProfilePage = () => {
       setSuccessMessage('');
 
       try {
-         const { data } = await import('@/api').then(m => m.shopApi).then(api => api.put(`/users/${user.id}`, {
+         const { data } = await shopApi.put(`/users/${user.id}`, {
             name: formState.name,
             surname: formState.surname,
-            document_type: formState.document_type,
+            dniType: formState.dniType,
+            dniNumber: formState.dniNumber,
             gender: formState.gender,
             birthdate: formState.birthdate,
             phone: formState.phone,
-         }));
+         });
 
          if (data.ok) {
             setSuccessMessage('Perfil actualizado correctamente');
@@ -139,7 +144,7 @@ export const ProfilePage = () => {
                         type="email"
                         name="email"
                         label="Correo electrónico"
-                        value={ formState.email }
+                        value={ email }
                         disabled
                      />
                   </div>
@@ -148,12 +153,22 @@ export const ProfilePage = () => {
                <div className="ProfilePage__row">
                   <ProfileField
                      type="select"
-                     name="document_type"
+                     name="dniType"
                      label="Tipo de documento"
-                     value={ formState.document_type }
+                     value={ formState.dniType }
                      onChange={ onFormChange }
                      options={ documentTypes }
                   />
+                  <ProfileField
+                     type="text"
+                     name="dniNumber"
+                     label="Número de documento"
+                     value={ formState.dniNumber }
+                     onChange={ onFormChange }
+                  />
+               </div>
+
+               <div className="ProfilePage__row">
                   <ProfileField
                      type="select"
                      name="gender"
@@ -162,9 +177,6 @@ export const ProfilePage = () => {
                      onChange={ onFormChange }
                      options={ genderOptions }
                   />
-               </div>
-
-               <div className="ProfilePage__row">
                   <ProfileField
                      type="date"
                      name="birthdate"
@@ -172,13 +184,18 @@ export const ProfilePage = () => {
                      value={ formState.birthdate }
                      onChange={ onFormChange }
                   />
-                  <ProfileField
-                     type="tel"
-                     name="phone"
-                     label="Teléfono"
-                     value={ formState.phone }
-                     onChange={ onFormChange }
-                  />
+               </div>
+
+               <div className="ProfilePage__row">
+                  <div className="ProfilePage__row--full">
+                     <ProfileField
+                        type="tel"
+                        name="phone"
+                        label="Teléfono"
+                        value={ formState.phone }
+                        onChange={ onFormChange }
+                     />
+                  </div>
                </div>
 
                {successMessage && (
