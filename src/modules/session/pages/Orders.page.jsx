@@ -10,12 +10,26 @@ export const OrdersPage = () => {
 	if ( isLoading ) return (
 		<section className="Section">
 			<h1 className="Section__title">Mis pedidos</h1>
-			<article className="Section__content loading">
-				<a><span /></a> 
-				<a><span /></a> 	
-				<a><span /></a> 
-				<a><span /></a> 
-			</article>
+			<div className="OrdersPage__loading">
+				<div className="OrdersPage__loading-header">
+					<span style={{ width: '60%' }} />
+					<span style={{ width: '80%' }} />
+					<span style={{ width: '40%' }} />
+					<span style={{ width: '70%' }} />
+					<span style={{ width: '50%' }} />
+					<span style={{ width: '30%' }} />
+				</div>
+				{[1, 2, 3].map((i) => (
+					<div key={i} className="OrdersPage__loading-row">
+						<span style={{ width: '60%' }} />
+						<span style={{ width: '80%' }} />
+						<span style={{ width: '40%' }} />
+						<span style={{ width: '70%' }} />
+						<span style={{ width: '50%' }} />
+						<span style={{ width: '30%' }} />
+					</div>
+				))}
+			</div>
 		</section>
 	)
 	

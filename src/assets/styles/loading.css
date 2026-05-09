@@ -4,6 +4,26 @@
 
 @layer components {
 
+	/* Orders Page */
+
+	.OrdersPage__loading {
+		@apply w-full overflow-hidden rounded-2xl border border-gray-200 bg-white;
+	}
+	.OrdersPage__loading-header {
+		@apply grid grid-cols-6 gap-4 p-4 border-b border-gray-200;
+	}
+	.OrdersPage__loading-header span {
+		@apply h-6 bg-gray-200 rounded animate-pulse;
+	}
+	.OrdersPage__loading-row {
+		@apply grid grid-cols-6 gap-4 p-4 items-center border-b border-gray-100;
+	}
+	.OrdersPage__loading-row:last-child {
+		@apply border-b-0;
+	}
+	.OrdersPage__loading-row span {
+		@apply h-5 bg-gray-100 rounded animate-pulse;
+	}
 
 	/* Home Page */
 
