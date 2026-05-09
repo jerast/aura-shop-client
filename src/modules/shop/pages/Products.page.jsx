@@ -1,35 +1,87 @@
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useState, useEffect, useMemo } from 'react';
 import { ProductCard } from '@/modules/shop';
 import { filters, queryParams, sorters, toCapitalize } from '@/helpers';
-import { useEffect, useState } from 'react';
+import { FilterPanel } from '@/modules/shop';
+import { applyFilters, getPriceRanges } from '@/helpers/productFilters';
 
 export const ProductsPage = () => {
 	const { isLoading } = useSelector( state => state.app );
 	const { products, categories } = useSelector( state => state.shop );
 	const { search, pathname } = useLocation();
 	const [title, setTitle] = useState('Productos');
+	const [selectedPriceType, setSelectedPriceType] = useState('retail');
+	const [filtersState, setFiltersState] = useState({
+		category: '',
+		priceRange: { min: 0, max: 0 },
+		priceType: 'retail',
+	});
+
+	const priceRanges = useMemo(() => getPriceRanges(products), [products]);
 
 	useEffect(() => {
-		const pathLastItem = pathname.slice(1).split('/').at(-1)
-		pathLastItem && setTitle(toCapitalize(pathLastItem));
-	}, [])
+		const range = priceRanges.retail || { min: 0, max: 0 };
+		setFiltersState(prev => ({
+			...prev,
+			priceRange: range,
+			priceType: selectedPriceType,
+		}));
+	}, [priceRanges]);
+
+	useEffect(() => {
+		const pathLastItem = pathname.slice(1).split('/').at(-1);
+		if (pathLastItem) {
+			setTitle(toCapitalize(pathLastItem));
+		}
+	}, [pathname]);
+
+	const handleFilterChange = (newFilters) => {
+		setFiltersState(prev => ({
+			...prev,
+			category: newFilters.category,
+			priceRange: newFilters.priceRange,
+		}));
+	};
+
+	const handlePriceTypeChange = (type) => {
+		setSelectedPriceType(type);
+		const range = priceRanges[type] || { min: 0, max: 0 };
+		setFiltersState(prev => ({
+			...prev,
+			priceRange: range,
+			priceType: type,
+		}));
+	};
 
 	const handleFilterProducts = () => {
-		const pathLastItem = pathname.slice(1).split('/').at(-1)
+		const pathLastItem = pathname.slice(1).split('/').at(-1);
+		
+		let result = products;
+
 		if ( categories.some( category => category.name.toLowerCase() === pathLastItem ) ) {
-			return filters( products, { ...queryParams(search), category: pathLastItem } );
+			result = filters( result, { ...queryParams(search), category: pathLastItem } );
+		} else if ( search ) {
+			result = filters( result, queryParams(search) );
 		}
 
-		if ( search ) 
-			return filters( products, queryParams(search) );
+		result = applyFilters(result, filtersState);
 
-		return sorters( products, 'normal', false );
+		return sorters( result, 'normal', false );
 	};
 
 	if ( isLoading ) return (
 		<section className="Section">
-			<h1 className="Section__title">Productos</h1>
+			<div className="ProductsPage__header">
+				<h1 className="Section__title">Productos</h1>
+				<FilterPanel 
+					categories={categories}
+					onFilterChange={handleFilterChange}
+					priceRanges={priceRanges}
+					selectedPriceType={selectedPriceType}
+					onPriceTypeChange={handlePriceTypeChange}
+				/>
+			</div>
 			<article className="Section__content loading">
 				<a><span /></a> 
 				<a><span /></a> 	
@@ -45,21 +97,45 @@ export const ProductsPage = () => {
 
 	if ( !products.length ) return (
 		<section className="Section">
-			<h1 className="Section__title">{title}</h1>
-			<h3>No se econtraron productos</h3>
+			<div className="ProductsPage__header">
+				<h1 className="Section__title">{title}</h1>
+				<FilterPanel 
+					categories={categories}
+					onFilterChange={handleFilterChange}
+					priceRanges={priceRanges}
+					selectedPriceType={selectedPriceType}
+					onPriceTypeChange={handlePriceTypeChange}
+				/>
+			</div>
+			<h3>No se encontraron productos</h3>
 		</section>
 	);
 
+	const filteredProducts = handleFilterProducts();
+
 	return (
 		<section className="Section">
-			<h1 className="Section__title">{title}</h1>
-			<article className="ProductList">
-			{
-				handleFilterProducts().map( product => (
-					<ProductCard key={ product.id } product={ product } />
-				))
-			}
-			</article>
+			<div className="ProductsPage__header">
+				<h1 className="Section__title">{title}</h1>
+				<FilterPanel 
+					categories={categories}
+					onFilterChange={handleFilterChange}
+					priceRanges={priceRanges}
+					selectedPriceType={selectedPriceType}
+					onPriceTypeChange={handlePriceTypeChange}
+				/>
+			</div>
+			{filteredProducts.length === 0 ? (
+				<p className="text-gray-500 mt-4">No hay productos que coincidan con los filtros.</p>
+			) : (
+				<article className="ProductList">
+				{
+					filteredProducts.map( product => (
+						<ProductCard key={ product.id } product={ product } />
+					))
+				}
+				</article>
+			)}
 		</section>
 	);
 };

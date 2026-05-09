@@ -7,3 +7,5 @@ export * from './pages/Contact.page';
 
 // Components
 export * from './components/ProductCard';
+export * from './components/FilterPanel';
+export * from './components/RangeSlider';
