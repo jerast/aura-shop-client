@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
 
 export const Footer = () => {
 	return (
-		<>
+		<footer className="Footer">
 			<div className="Footer__main">
 				<SVGLogo className="Footer__logo" />
 				<span className="Footer__caption">El lugar donde puedes mejorar tu belleza</span>
@@ -51,6 +51,6 @@ export const Footer = () => {
 			<div className="Footer__copyright">
 				&copy; 2023 Aura. Todos los derechos reservados
 			</div>
-		</>
+		</footer>
 	);
 };

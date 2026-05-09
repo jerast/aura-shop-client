@@ -15,11 +15,12 @@ import './assets/styles/loading.css';
 
 export const App = () => {
    const { pathname } = useLoader();
+   const isAuthView = pathname === '/login' || pathname === '/signup'
 
    return (
       <>
          {
-            pathname !== '/login' &&
+            !isAuthView &&
                <>
                   <NotifyBar />
                   <header className="Header">
@@ -28,15 +29,13 @@ export const App = () => {
                </>
          }
          <main className={`Main${ (pathname !== '/') ? ' Main--content' : ''}`}>
-            <Breadcrubs path={ pathname } />
+            <Breadcrubs />
             <AppRoutes />
          </main>
          {
-            pathname !== '/login' &&
+            !isAuthView &&
                <>
-                  <footer className="Footer">
-                     <Footer />
-                  </footer>
+                  <Footer />
                   <Sidebar />
                   <ShoppingCart />
                </>

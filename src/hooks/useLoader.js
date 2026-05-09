@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { setLastPath } from '@/helpers';
@@ -15,7 +15,7 @@ export const useLoader = () => {
 	const { pathname } = useLocation();
 	const dispatch = useDispatch();
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		handleLoadingData();
 	}, []);
 	

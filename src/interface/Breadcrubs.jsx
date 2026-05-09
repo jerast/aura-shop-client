@@ -6,10 +6,10 @@ import { NavLink, useLocation } from 'react-router-dom'
 const pathNames = {
    products: { path: '/products', name: 'Productos' },
    categories: { path: '/categories', name: 'Categorías' },
-   account: { path: '/account/profile', name: 'Perfil' },
-   orders: { path: '/account/orders', name: 'Mis Pedidos'},
    contact: { path: '/contact', name: 'Contacto' },
-   profile: { path: '/account/profile', name: 'Perfil' }
+   account: { path: '/account', name: 'Cuenta' },
+   profile: { path: '/account/profile', name: 'Mi Perfil' },
+   orders: { path: '/account/orders', name: 'Mis Pedidos'},
 }
 
 export const Breadcrubs = () => {
