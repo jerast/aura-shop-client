@@ -1,5 +1,5 @@
 import { shopApi } from '@/api';
-import { onLoadProducts, onLoadCategories } from '@/store';
+import { onLoadProducts, onLoadCategories, onLoadBanners } from '@/store';
 
 export const startLoadingCategories = () => 
 	async (dispatch) => {
@@ -19,5 +19,15 @@ export const startLoadingProducts = () =>
 			
 		} catch {
 			console.error( 'Something fails at load Products' );
+		}
+	};
+
+export const startLoadingBanners = () => 
+	async (dispatch) => {
+		try {
+			const { data } = await shopApi.get('/banners');
+			dispatch( onLoadBanners(data.banners) );
+		} catch {
+			console.error( 'Something fails at load Banners' );
 		}
 	};

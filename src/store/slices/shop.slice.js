@@ -5,6 +5,7 @@ export const shopSlice = createSlice({
 	initialState: {
       categories: [],
       products: [],
+      banners: [],
 	},
 	reducers: {
 		onLoadCategories: (state, { payload = [] }) => {
@@ -12,6 +13,9 @@ export const shopSlice = createSlice({
 		},
 		onLoadProducts: (state, { payload = [] }) => {
 			state.products = payload;
+		},
+		onLoadBanners: (state, { payload = [] }) => {
+			state.banners = payload;
 		},
 		onReduceProductStock: (state, { payload }) => {
 			state.products[ payload.index ].stock -= payload.count;
@@ -22,5 +26,6 @@ export const shopSlice = createSlice({
 export const { 
 	onLoadCategories,
 	onLoadProducts,
+	onLoadBanners,
 	onReduceProductStock,
 } = shopSlice.actions;

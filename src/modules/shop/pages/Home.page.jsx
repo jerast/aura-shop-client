@@ -1,14 +1,21 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { ProductCard } from '@/modules/shop';
+import { startLoadingBanners } from '@/store';
 import { resize } from '@/helpers';
+import { ProductCard } from '@/modules/shop';
 
 export const HomePage = () => {
-	const { isLoading } = useSelector( state => state.app );
-	const { categories, products } = useSelector( state => state.shop );
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const { isLoading } = useSelector( state => state.app );
+	const { categories, products, banners } = useSelector( state => state.shop );
 
-	if ( isLoading ) return (
+	useEffect(() => {
+		dispatch( startLoadingBanners() );
+	}, []);
+
+	if ( isLoading || !banners.length ) return (
 		<>
 			<figure className="Banner">
 				<figcaption className="Banner__caption loading">
@@ -30,16 +37,23 @@ export const HomePage = () => {
 		</>
 	);
 
+	const activeBanner = banners[0];
+
 	return (
 		<>
 			<figure className="Banner">
 				<img 
 					className="Banner__image" 
-					src="https://res.cloudinary.com/jerastcloud/image/upload/Aura-B/Posts/hszzuaie5bf8lekxmzdl.avif"
+					src={ resize( activeBanner.image, 1600, 'posts' ) }
+					alt="Banner"
 				/>
 				<figcaption className="Banner__caption">
-					<h1>Lleva tu belleza a otro nivel con nuestra colección</h1>
-					<button onClick={() => navigate('/products')}>Comprar</button>
+					{ activeBanner.text && <h1>{ activeBanner.text }</h1> }
+					{ activeBanner.link ? (
+						<Link to={ activeBanner.link }>Ver más</Link>
+					) : (
+						<button onClick={() => navigate('/products')}>Comprar</button>
+					)}
 				</figcaption>
 			</figure>
 
