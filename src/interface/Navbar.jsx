@@ -82,7 +82,7 @@ export const Navbar = () => {
 					<div className="Navbar__controls-login-dropdown">
 						<ul>
 							{/* <li><Link to='/account'>My Account</Link></li> */}
-							<li><Link to='/account/orders'>Mis pedidos</Link></li>
+							<li><Link to='/account/profile'>Mi perfil</Link></li>
 						</ul>
 						<ul>
 							<li><span onClick={ handleLogout }>Cerrar sesión</span></li>

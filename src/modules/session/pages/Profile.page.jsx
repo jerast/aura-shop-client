@@ -25,18 +25,19 @@ const initialFormState = {
 
 export const ProfilePage = () => {
    const { user } = useSelector(state => state.session);
+   
    const [isSaving, setIsSaving] = useState(false);
    const [successMessage, setSuccessMessage] = useState('');
 
    const {
       formState,
       onFormChange,
-      onFormReset,
+      setFormState,
    } = useForm(initialFormState);
 
    useEffect(() => {
       if (user && user.id) {
-         onFormReset({
+         setFormState({
             name: user.name || '',
             surname: user.surname || '',
             email: user.email || '',
@@ -45,8 +46,9 @@ export const ProfilePage = () => {
             birthdate: user.birthdate || '',
             phone: user.phone || '',
          });
+         console.log(user);
       }
-   }, [user?.id]);
+   }, [user]);
 
    const hasChanges = useMemo(() => {
       if (!user || !user.id) return false;
