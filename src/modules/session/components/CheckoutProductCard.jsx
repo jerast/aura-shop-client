@@ -15,7 +15,7 @@ export const CheckoutProductCard = ({ id }) => {
 		<div className="OrderProductCard fluid">
 			<img className="OrderProductCard__image" src={ resize( product.image, 100, 'products' ) } alt="product" />
 			<Link className="OrderProductCard__name fluid" to={`/products/${ product.id }`} >{ product.name }</Link>
-			<span className="OrderProductCard__count">{ productCounter } Units</span>
+			<span className="OrderProductCard__count">{ productCounter } {productCounter > 1 ? 'Unidades' : 'Unidad'}</span>
 			<span className={`OrderProductCard__price fluid ${ order.total_products >= 6 ? 'discount' : '' }`}>				
 				<span>
 				{ 

@@ -7,12 +7,12 @@ export const Footer = () => {
 		<>
 			<div className="Footer__main">
 				<SVGLogo className="Footer__logo" />
-				<span className="Footer__caption">The place where you can improve your beauty</span>
+				<span className="Footer__caption">El lugar donde puedes mejorar tu belleza</span>
 				<div className="Footer__social-media">
 					<Link className="Footer__social-link" to="https://www.facebook.com/profile.php?id=100087026423255" target="_blank" >
 						<FaFacebook />
 					</Link>
-					<Link className="Footer__social-link" to="https://www.instagram.com/aura.belleza77/" target="_blank" >
+					<Link className="Footer__social-link" to="https://www.instagram.com/aura.belleza77" target="_blank" >
 						<FaInstagram />
 					</Link>
 					<Link className="Footer__social-link" to="https://www.tiktok.com/@aura.belleza" target="_blank" >
@@ -22,25 +22,25 @@ export const Footer = () => {
 			</div>
 			<div className="Footer__section">
 				<div className="Footer__article">
-					<h3 className="Footer__title">Shop</h3>
+					<h3 className="Footer__title">Tienda</h3>
 					<Link className="Footer__link" to="/products">
-						Products
+						Productos
 					</Link>
 					<Link className="Footer__link" to="/categories">
-						Categories
+						Categorías
 					</Link>
 				</div>
 				<div className="Footer__article">
-					<h3 className="Footer__title">Company</h3>
+					<h3 className="Footer__title">Nosotros</h3>
+					{/* <Link className="Footer__link">
+						Acerca de Nosotros
+					</Link> */}
 					<Link className="Footer__link">
-						About Us
-					</Link>
-					<Link className="Footer__link">
-						Contact
+						Contacto
 					</Link>
 				</div>
 				<div className="Footer__article">
-					<h3 className="Footer__title">Payment Methods</h3>
+					<h3 className="Footer__title">Métodos de Pago</h3>
 					<div className="Footer__payment-methods">
 						<SVGVisa />
 						<SVGMasterCard />
@@ -49,11 +49,8 @@ export const Footer = () => {
 				</div>
 			</div>
 			<div className="Footer__copyright">
-				&copy; 2023 Aura. All rights reserverd
+				&copy; 2023 Aura. Todos los derechos reservados
 			</div>
 		</>
 	);
 };
-
-
-

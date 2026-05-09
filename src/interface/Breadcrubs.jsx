@@ -1,62 +1,45 @@
-import { toCapitalize } from '@/helpers';
-import { useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { toCapitalize } from '@/helpers'
+import { useCallback } from 'react'
+import { useSelector } from 'react-redux'
+import { NavLink, useLocation } from 'react-router-dom'
+
+const pathNames = {
+   products: { path: '/products', name: 'Productos' },
+   categories: { path: '/categories', name: 'Categorías' },
+   account: { path: '/account/profile', name: 'Perfil' },
+   orders: { path: '/account/orders', name: 'Mis Pedidos'}
+}
 
 export const Breadcrubs = () => {
-   const { products, categories } = useSelector( state => state.shop );
-   const { isLoading } = useSelector( state => state.app );
-   const { pathname } = useLocation();
+   const { products, categories } = useSelector( state => state.shop )
+   const { isLoading } = useSelector( state => state.app )
+   const { pathname } = useLocation()
 
-   if ( pathname === '/' || pathname === '/login' ) return ;
+   const findPath = useCallback((namepath, pathIndex) => {
+      if (!namepath) return
 
-   if ( isLoading ) return ;
+      const path = pathNames[namepath]
+      if (!!path) return (
+         <NavLink key={pathIndex} to={path?.path}>{path?.name}</NavLink>
+      )
 
-   const paths = pathname.slice(1).split('/');
+      const categoryPath = categories.find(category => category.name === toCapitalize(namepath))
+      if (categoryPath) return (
+         <NavLink key={pathIndex} to={`/categories/${namepath}`}>{categoryPath?.name}</NavLink>
+      )
 
-   const appPaths = () => {
-      if ( categories.some( category => category.name.toLowerCase() === paths[0] ) ) {
-         return (
-            <>
-               <NavLink to="/products">
-                  Products
-               </NavLink>
-               <span>
-                  { toCapitalize( paths[0] ) }
-               </span>
-            </>
-         );
-      };
+      const productPath = products.find(product => product.id === namepath)
+      if (productPath) return (
+         <NavLink key={pathIndex} to={`/products/${namepath}`}>{productPath?.name}</NavLink>
+      )
+   })
 
-      return (
-         paths.map( path => <NavLink key={ path } to={ '/'+path }>{ toCapitalize(path) }</NavLink> )
-      );
-   };
-
-   const productPaths = () => {
-      const { category, name } = products.find( product => product.id === paths[1] );
-
-      return (
-         <>
-            <NavLink to="/products">
-               Products
-            </NavLink>
-            <NavLink to={ '/' + category.toLowerCase() }>
-               { category[0].toUpperCase() + category.slice(1) }
-            </NavLink>
-            <span>
-               { name }
-            </span>
-         </>
-      );
-   };
-
+   if ( pathname === '/' || pathname === '/login' ) return 
 
    return (
       <div className="Breadcrumbs">
-         <NavLink to={ '/' }>Home</NavLink>
-         {
-            (paths[0] === 'products' && paths.length === 2) ? productPaths() : appPaths()
-         }
+         <NavLink to={ '/' }>Inicio</NavLink>
+         {!isLoading && pathname.slice(1).split('/').map((pathname, index) => findPath(pathname, index))}
       </div>
-   );
-};
+   )
+}

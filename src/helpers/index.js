@@ -9,3 +9,4 @@ export * from './lastPath';
 export * from './shoppingCartStorage';
 export * from './strings';
 export * from './sorters';
+export * from './className';

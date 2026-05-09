@@ -23,28 +23,28 @@ export const OrderPage = () => {
 	
 
 	if ( isLoading ) return (
-		<>
-			<h1>order</h1>
-			<h4>Loading...</h4>
-		</>
+		<section className="Section">
+			<h1 className="Section__title">Detalles del pedido</h1>
+			<h4>Cargando...</h4>
+		</section>
 	);
 
 	if ( !activeOrder ) return (
-		<>
-			<h1>order</h1>
-			<h4>Order Not Found</h4>
-		</>
+		<section className="Section">
+			<h1 className="Section__title">Detalles del pedido</h1>
+			<h4>Pedido no encontrado</h4>
+		</section>
 	);
 
 	const handleOrderStateClass = () => {
       switch (activeOrder.state) {
-         case 'Pending':
+         case 'Pendiente':
             return 'OrderCard__state--pending';
-         case 'Active':
+         case 'Listo':
             return 'OrderCard__state--active';
-         case 'Delivered':
+         case 'Entregado':
             return 'OrderCard__state--delivered';
-         case 'Cancelled':
+         case 'Cancelado':
             return 'OrderCard__state--cancelled';
       
          default:
@@ -54,26 +54,26 @@ export const OrderPage = () => {
 
 	return (
 		<section className="Section ">
-			<h1 className="Section__title">Order Details</h1>
+			<h1 className="Section__title">Pedido no. { activeOrder.id }</h1>
 			<article className="OrderConfirm OrderConfirm--order">
 				<div className="OrderConfirm__resume">
 					<table>
 						
 						<tbody>
 							<tr>
-								<td>Order No.</td>
+								<td>ID Pedido</td>
 								<td>{ activeOrder.id }</td>
 							</tr>
 							<tr>
-								<td>Start Date</td>
+								<td>Fecha</td>
 								<td>{ dateFormatter(activeOrder.date) }</td>
 							</tr>
 							<tr>
-								<td>Total Products</td>
+								<td>Cantidad de productos</td>
 								<td>{ activeOrder.list.reduce( (accum, item) => accum + item.count, 0 ) } products</td>
 							</tr>
 							<tr className="OrderConfirm__discount">
-								<td>Discount</td>
+								<td>Descuento</td>
 								<td>
 									{ 
 										currencyFormatter( activeOrder.discount 

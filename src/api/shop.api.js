@@ -7,7 +7,7 @@ const shopApi = axios.create({
 shopApi.interceptors.request.use( config => {
    config.headers = {
       ...config.headers,
-      'x-token': localStorage.getItem('sessionToken')
+      'x-token': localStorage.getItem('aura-shop-token')
    };
 
    return config;

@@ -9,9 +9,9 @@ export const PublicRoutes = () => {
 			<Route path="/categories" element={ <CategoriesPage /> } />
 			<Route path="/products" element={ <ProductsPage /> } />
 			<Route path="/products/:id" element={ <ProductPage /> } />
-			<Route path="/:category" element={ <ProductsPage /> } />
+			<Route path="/categories/:category" element={ <ProductsPage /> } />
 			<Route path="/login" element={ <LoginPage /> } />
-         <Route path="*" element={ <h1>Not Found</h1> } />
+			<Route path="*" element={ <h1>Not Found</h1> } />
 		</Routes>
 	);
 };

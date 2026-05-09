@@ -24,7 +24,7 @@ export const Search = () => {
       >
          <input 
             type="text" 
-            placeholder="Search Product" 
+            placeholder="Buscar productos" 
             name="search"
             autoComplete="off"
             value={ searchField }

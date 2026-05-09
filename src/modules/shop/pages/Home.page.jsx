@@ -38,13 +38,13 @@ export const HomePage = () => {
 					src="https://res.cloudinary.com/jerastcloud/image/upload/Aura-B/Posts/hszzuaie5bf8lekxmzdl.avif"
 				/>
 				<figcaption className="Banner__caption">
-					<h1>Level up your beauty with our products collection</h1>
-					<button onClick={() => navigate('/products')}>Shop now</button>
+					<h1>Lleva tu belleza a otro nivel con nuestra colección</h1>
+					<button onClick={() => navigate('/products')}>Comprar</button>
 				</figcaption>
 			</figure>
 
 			<section className="Section Section--main">
-				<h1 className="Section__title">Top Categories</h1>
+				<h1 className="Section__title">Categorías más vendidas</h1>
 				<article className="Section__content Section__content--categories">
 					{
 						categories.map( category => 
@@ -66,7 +66,7 @@ export const HomePage = () => {
 			</section>
 
 			<section className="Section Section--main">
-				<h1 className="Section__title">Featured Produts</h1>
+				<h1 className="Section__title">Nuevos productos</h1>
 				<article className="Section__content Section__content--products">
 					{
 						(products.slice(1, 7)).map( product => 

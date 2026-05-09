@@ -8,29 +8,27 @@ export const CategoriesPage = () => {
 	const { categories } = useSelector( state => state.shop );
 
 	if ( isLoading ) return (
-		<>
-			<section className="Section">
-				<h1 className="Section__title">Categories</h1>
-				<article className="Section__content loading">
-					<a><span /></a> 
-					<a><span /></a> 
-					<a><span /></a> 
-					<a><span /></a> 
-				</article>
-			</section>
-		</>
+		<section className="Section">
+			<h1 className="Section__title">Categorías</h1>
+			<article className="Section__content loading">
+				<a><span /></a> 
+				<a><span /></a> 	
+				<a><span /></a> 
+				<a><span /></a> 
+			</article>
+		</section>
 	);
 
 	return (
 		<section className="Section">
-			<h1 className="Section__title">Categories</h1>
+			<h1 className="Section__title">Categorías</h1>
 			<article className="Section__content Section__content--categories">
 				{
 					categories.map( category => 
 						<Link 
 							key={ category.id }
 							className="Category fluid" 
-							to={`/${ category.name.toLowerCase() }`} 
+							to={`/categories/${ category.name.toLowerCase() }`} 
 						>
 							<img 
 								className="Category__image fluid"

@@ -36,9 +36,9 @@ export const Navbar = () => {
 				</NavLink>
 			</div>
 			<div className="Navbar__nav">
-				<NavLink to="/categories">Categories</NavLink>
-				<NavLink to="/products">Products</NavLink>
-				<NavLink>Contact</NavLink>
+				<NavLink to="/categories">Categorías</NavLink>
+				<NavLink to="/products">Productos</NavLink>
+				<NavLink>Contacto</NavLink>
 			</div>
 			<div className="Navbar__controls">
 				<Search />
@@ -82,10 +82,10 @@ export const Navbar = () => {
 					<div className="Navbar__controls-login-dropdown">
 						<ul>
 							{/* <li><Link to='/account'>My Account</Link></li> */}
-							<li><Link to='/account/orders'>My Orders</Link></li>
+							<li><Link to='/account/orders'>Mis pedidos</Link></li>
 						</ul>
 						<ul>
-							<li><span onClick={ handleLogout }>Log Out</span></li>
+							<li><span onClick={ handleLogout }>Cerrar sesión</span></li>
 						</ul>
 					</div>
 				</DropdownButton>

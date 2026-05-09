@@ -6,8 +6,10 @@ export const NotifyBar = () => {
 
    return (
       <div className="NotifyBar">
-         <p>Buy 6 or more products to <span className="primary">get discount.</span></p>
-         { status !== 'auth' && <Link to="/login" className="primary link">Sign up now</Link> }
+         <p>Compra 6 o más productos y <span className="primary">Obtén un Descuento.</span></p>
+         { status !== 'auth' 
+            ? <Link to="/login" className="primary link">¡Regístrate!</Link> 
+            : <Link to="/products" className="primary link">¡Compra Ya!</Link> }
       </div>
    );
 };

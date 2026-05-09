@@ -2,8 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Checkout, OrderPage, OrdersPage } from '@/modules/session';
 
 export const UserRoutes = () => {
-
-	if (!localStorage.getItem('sessionToken')) return <Navigate to="/login" replace/>;
+	if (!localStorage.getItem('aura-shop-token')) return <Navigate to="/login" replace/>;
 
 	return (
 		<Routes>

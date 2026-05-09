@@ -13,9 +13,9 @@ const loginFormFields = {
 };
 
 const signFormFields = {
-	signName: '',
-	signSurname: '',
-	signPhone: '',
+	// signName: '',
+	// signSurname: '',
+	// signPhone: '',
 	signEmail: '',
 	signPassword: '',
 };
@@ -79,7 +79,7 @@ export const LoginPage = () => {
 		onSignFormReset();
 	};
 
-	if ( localStorage.getItem('sessionToken') ) 
+	if ( localStorage.getItem('aura-shop-token') ) 
 			return <Navigate to={ '/' } replace/>;
 
 	return (
@@ -88,12 +88,12 @@ export const LoginPage = () => {
 				<div className="Auth__box">
 					<form className="Auth__form" onSubmit={ handleLoginFormSubmit }>
 						<span className="ShoppingCart__close-button cursor-pointer fluid" onClick={ handleGoBack }><BiLeftArrowAlt /></span>
-						<h1 className="Auth__title">Log In</h1>
-						<span className="Auth__description">Log in to continue.</span>
+						<h1 className="Auth__title">Iniciar Sesión</h1>
+						<span className="Auth__description">Inicia sesión para continuar.</span>
 						<Input 
 							type="email" 
 							name="loginEmail" 
-							placeholder="Email"
+							placeholder="Correo electrónico"
 							value={ loginFormState.loginEmail } 
 							onChange={ onLoginFormChange } 
 							disabled={ !isloggin }
@@ -102,7 +102,7 @@ export const LoginPage = () => {
 						<Input 
 							type="password" 
 							name="loginPassword" 
-							placeholder="Password"
+							placeholder="Contraseña"
 							value={ loginFormState.loginPassword }
 							onChange={ onLoginFormChange }
 							disabled={ !isloggin }
@@ -111,11 +111,11 @@ export const LoginPage = () => {
 						<span className="Auth__error-message">{ errorMessage }</span>
 						<Button 
 							disabled={ !isloggin }
-							value="Continue"
+							value="Continuar"
 						/>
 						<p className="Auth__options">
-							<span>Don't have an account?</span>
-							<span onClick={ handleSwitchForm }>Sign up</span>
+							<span>¿No tienes cuenta?</span>
+							<span onClick={ handleSwitchForm }>Regístrate</span>
 						</p>
 					</form>
 				</div>
@@ -123,9 +123,9 @@ export const LoginPage = () => {
 				<div className="Auth__box">
 					<form className="Auth__form" onSubmit={ handleSignupFormSubmit } >
 						<span className="ShoppingCart__close-button cursor-pointer fluid" onClick={ handleGoBack }><BiLeftArrowAlt /></span>
-						<h1 className="Auth__title">Sign Up</h1>
-						<span className="Auth__description">Sign up to create an account.</span>
-						<Input 
+						<h1 className="Auth__title">Crear Usuario</h1>
+						<span className="Auth__description">Regístrate para crear un usuario.</span>
+						{/* <Input 
 							type="text" 
 							name="signName" 
 							placeholder="Name"
@@ -150,7 +150,7 @@ export const LoginPage = () => {
 							value={ signFormState.signPhone } 
 							onChange={ onSignFormChange } 
 							disabled={ isloggin }
-						/>
+						/> */}
 						<Input 
 							type="email" 
 							name="signEmail" 
@@ -172,11 +172,11 @@ export const LoginPage = () => {
 						<span className="Auth__error-message">{ errorMessage }</span>
 						<Button 
 							disabled={ isloggin }
-							value="Continue"
+							value="Continuar"
 						/>
 						<p className="Auth__options">
-							<span>Already have an account?</span>
-							<span onClick={ handleSwitchForm }>Log in</span>
+							<span>¿Ya tienes una cuenta?</span>
+							<span onClick={ handleSwitchForm }>Inicia sesión</span>
 						</p>
 					</form>
 				</div>

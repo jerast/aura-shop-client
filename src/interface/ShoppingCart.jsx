@@ -34,7 +34,7 @@ export const ShoppingCart = () => {
 			/>
 			<div className={`ShoppingCart__content fluid ${ shoppingCartIsOpen ? '' : '-right-[30rem] sm:-right-[30rem]' }`}>					
 				<div className="ShoppingCart__header">
-					<h1>Shopping Cart</h1>
+					<h1>Tu Carrito</h1>
 					<button className="ShoppingCart__close-button fluid" onClick={ handleCloseShoppingCart }>
 						<MdClose />
 					</button>
@@ -48,7 +48,7 @@ export const ShoppingCart = () => {
 					<>
 						<div className={`ShoppingCart__confirm ${ order.total_products >= 6 ? 'discount' : '' }`}>
 							<button className="ShoppingCart__confirm-button fluid" onClick={ () => handlePayShoppingCart('/account/orders/checkout') }>
-								<span>Go to pay:</span> 
+								<span>Pagar:</span> 
 								<p>
 									<span className="fluid">{ currencyFormatter( order.total_prices.retail ) }</span>
 									<span className="fluid">{ currencyFormatter( order.total_prices.wholesale ) }</span>
@@ -57,17 +57,17 @@ export const ShoppingCart = () => {
 							<div>
 								{
 									(order.total_products >= 6)
-									? <p><TbDiscountCheckFilled />GOT THE DISCOUNT!</p>
-									: <p><span>{ 6 - order.total_products }</span> product(s) more to <span>get DISCOUNT</span></p>
+									? <p><TbDiscountCheckFilled /> ¡TIENES EL DESCUENTO!</p>
+									: <p><span>{ 6 - order.total_products }</span> producto{6 - order.total_products > 1 ? 's' : ''} más para <span>obtener el DESCUENTO</span></p>
 								}
 							</div>
 						</div>
-						<Link className="ShoppingCart__link fluid" to={'/products'} onClick={ handleCloseShoppingCart }>See more products</Link>
+						<Link className="ShoppingCart__link fluid" to={'/products'} onClick={ handleCloseShoppingCart }>Ver más productos</Link>
 					</> : 
 					<div className="ShoppingCart__empty">
 						<MdAddShoppingCart />
-						<span>You don't have products on your Cart yet!<br /> :( </span>
-						<button className="ShoppingCart__no-products fluid" onClick={() => handlePayShoppingCart('/products')}>Shop Now</button>
+						<span>Tu carrito está vacío por el momento<br /> :( </span>
+						<button className="ShoppingCart__no-products fluid" onClick={() => handlePayShoppingCart('/products')}>Ver productos</button>
 					</div>
 				}
 			</div>

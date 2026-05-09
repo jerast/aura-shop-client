@@ -66,22 +66,22 @@ export const Sidebar = () => {
 							</span>
 							<div className="Navbar__controls-login-dropdown">
 								<ul>
-									<li><span onClick={ handleLogout }>Log Out</span></li>
+									<li><span onClick={ handleLogout }>Cerrar sesión</span></li>
 								</ul>
 							</div>
 						</DropdownButton>
 					</div>
 					<Search />
 					<ul className="Sidebar__group">
-						<li><NavLink onClick={ handleCloseSidebar } to="/">Home</NavLink></li>
-						<li><NavLink onClick={ handleCloseSidebar } to="/categories">Categories</NavLink></li>
-						<li><NavLink onClick={ handleCloseSidebar } to="/products">Products</NavLink></li>
+						<li><NavLink onClick={ handleCloseSidebar } to="/">Inicio</NavLink></li>
+						<li><NavLink onClick={ handleCloseSidebar } to="/categories">Categorías</NavLink></li>
+						<li><NavLink onClick={ handleCloseSidebar } to="/products">Productos</NavLink></li>
 					</ul>
 					{
 						(!isLoading && status === 'auth') && (
 							<ul className="Sidebar__group">
-								<li><NavLink onClick={ handleCloseSidebar } to="/account">My Account</NavLink></li>
-								<li><NavLink onClick={ handleCloseSidebar } to="/account/orders">My Orders</NavLink></li>
+								<li><NavLink onClick={ handleCloseSidebar } to="/account">Mi cuenta</NavLink></li>
+								<li><NavLink onClick={ handleCloseSidebar } to="/account/orders">Mis pedidos</NavLink></li>
 							</ul>
 						)
 					}
@@ -90,7 +90,7 @@ export const Sidebar = () => {
 							<ul className="Sidebar__group">
 								<li>
 									<button onClick={ (status === 'auth') ? handleLogout : handleLogin }>
-										{ (status === 'auth') ? 'Log Out' : 'Log In' }
+										{ (status === 'auth') ? 'Cerrar seción' : 'Iniciar sesión' }
 									</button>
 								</li>
 							</ul>

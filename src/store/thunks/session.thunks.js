@@ -19,7 +19,7 @@ export const startVerifyingSession = () =>
 	async (dispatch) => {
 		dispatch( onChecking() );
 
-      const token = localStorage.getItem('sessionToken');
+      const token = localStorage.getItem('aura-shop-token');
 
       if ( !token ) {
          return dispatch( startLogout() );
@@ -28,7 +28,7 @@ export const startVerifyingSession = () =>
       try {
          const { data } = await shopApi.get('/users/jwt');
 			
-         localStorage.setItem( 'sessionToken', data.token );
+         localStorage.setItem( 'aura-shop-token', data.token );
 
          dispatch( onLogin( data.user ) );
 			dispatch( startLoadingOrders() );
@@ -58,7 +58,7 @@ export const startLogin = ({ email, password }) =>
 
 		try {
 			const { data } = await shopApi.post('/users/', { email, password })
-			localStorage.setItem( 'sessionToken', data.token );
+			localStorage.setItem( 'aura-shop-token', data.token );
 			dispatch( onLogin( data.user ) );
 			dispatch( startLoadingOrders() );
 			return data.ok;
@@ -70,7 +70,7 @@ export const startLogin = ({ email, password }) =>
 
 export const startLogout = ( message ) => 
 	(dispatch) => {
-		localStorage.removeItem('sessionToken');
+		localStorage.removeItem('aura-shop-token');
 		dispatch( onLogout(message) );
 		// dispatch( clearActiveOrder() );
 

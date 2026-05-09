@@ -1,31 +1,50 @@
-import { useSelector } from 'react-redux';
-import { OrderCard } from '@/modules/session';
+import { useSelector } from 'react-redux'
+import { OrderCard } from '@/modules/session'
 
 export const OrdersPage = () => {
-	const { orders } = useSelector( state => state.session );
-	const { isLoading, isSaving } = useSelector( state => state.app );
+	const { orders } = useSelector( state => state.session )
+	const { isLoading, isSaving } = useSelector( state => state.app )
 	
 	if ( isLoading ) return (
-		<>
-			<h1>Orders</h1>
-			<h4>Loading...</h4>
-		</>
-	);
+		<section className="Section">
+			<h1 className="Section__title">Mis pedidos</h1>
+			<h4>Cargando...</h4>
+		</section>
+	)
 	
 	if ( !orders.length ) return (
-		<>
-			<h1>Orders</h1>
-			<h4>Nothing in it...</h4>
-		</>
-	);
+		<section className="Section">
+			<h1 className="Section__title">Mis pedidos</h1>
+			<h4>No tienes pedidos aún...</h4>
+		</section>
+	)
 
 	return (
 		<section className="Section">
 			<h1 className="Section__title">My Orders</h1>
 			<article className="Section__content OrderList">
-			{ isSaving && <div>Wait a second...</div> }
-				{ [...orders].reverse().map( order => <OrderCard key={ order.id } order={ order } /> ) }
+				<table className="w-full min-w-[900px]">
+					<thead>
+						<tr className="border-b border-border bg-muted/30">
+							<th className="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">ID Pedido</th>
+							<th className="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Fecha</th>
+							<th className="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Articulos</th>
+							<th className="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Importe</th>
+							<th className="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Estado</th>
+							<th className="px-6 py-4 text-right text-xs font-medium uppercase tracking-wider text-muted-foreground">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{ isSaving && <tr>Wait a second...</tr> }
+						{[...orders].reverse().map((order) => (
+							<OrderCard
+								key={ order.id }
+								order={ order }
+							/>
+						))}
+					</tbody>
+				</table>
 			</article>
 		</section>
-	);
-};
+	)
+}
