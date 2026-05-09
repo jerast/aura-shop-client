@@ -4,11 +4,8 @@ import { resize } from '@/helpers';
 import { EmptyState } from '@/interface';
 
 export const CategoriesPage = () => {
-
 	const { isLoading } = useSelector( state => state.app );
 	const { categories } = useSelector( state => state.shop );
-	console.log(categories);
-
 
 	if ( isLoading ) return (
 		<section className="Section">
