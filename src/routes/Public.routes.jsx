@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { LoginPage } from '@/modules/auth';
+import { AuthPage } from '@/modules/auth';
 import { CategoriesPage, ProductsPage, HomePage, ProductPage, ContactPage } from '@/modules/shop';
 
 export const PublicRoutes = () => {
@@ -10,7 +10,8 @@ export const PublicRoutes = () => {
 			<Route path="/products" element={ <ProductsPage /> } />
 			<Route path="/products/:id" element={ <ProductPage /> } />
 			<Route path="/categories/:category" element={ <ProductsPage /> } />
-			<Route path="/login" element={ <LoginPage /> } />
+			<Route path="/login" element={ <AuthPage /> } />
+			<Route path="/signup" element={ <AuthPage /> } />
 			<Route path="/contact" element={ <ContactPage /> } />
 			<Route path="*" element={ <h1>Not Found</h1> } />
 		</Routes>

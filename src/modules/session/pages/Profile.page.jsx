@@ -12,7 +12,6 @@ const documentTypes = [
 const genderOptions = [
    { value: 'M', label: 'Masculino' },
    { value: 'F', label: 'Femenino' },
-   { value: 'O', label: 'Otro' },
 ];
 
 const initialFormState = {
