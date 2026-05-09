@@ -35,7 +35,7 @@ export const Footer = () => {
 					{/* <Link className="Footer__link">
 						Acerca de Nosotros
 					</Link> */}
-					<Link className="Footer__link">
+					<Link className="Footer__link" to="/contact">
 						Contacto
 					</Link>
 				</div>

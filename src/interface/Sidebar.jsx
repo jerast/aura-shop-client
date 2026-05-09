@@ -76,6 +76,7 @@ export const Sidebar = () => {
 						<li><NavLink onClick={ handleCloseSidebar } to="/">Inicio</NavLink></li>
 						<li><NavLink onClick={ handleCloseSidebar } to="/categories">Categorías</NavLink></li>
 						<li><NavLink onClick={ handleCloseSidebar } to="/products">Productos</NavLink></li>
+						<li><NavLink onClick={ handleCloseSidebar } to="/contact">Contacto</NavLink></li>
 					</ul>
 					{
 						(!isLoading && status === 'auth') && (

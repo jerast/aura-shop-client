@@ -38,7 +38,7 @@ export const Navbar = () => {
 			<div className="Navbar__nav">
 				<NavLink to="/categories">Categorías</NavLink>
 				<NavLink to="/products">Productos</NavLink>
-				<NavLink>Contacto</NavLink>
+				<NavLink to="/contact">Contacto</NavLink>
 			</div>
 			<div className="Navbar__controls">
 				<Search />
