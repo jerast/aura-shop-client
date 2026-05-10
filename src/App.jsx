@@ -12,10 +12,12 @@ import {
 import './assets/styles/config.css';
 import './assets/styles/main.css';
 import './assets/styles/loading.css';
+import { Banner } from './modules/shop';
 
 export const App = () => {
    const { pathname } = useLoader();
    const isAuthView = pathname === '/login' || pathname === '/signup'
+   const isHome = pathname === '/'
 
    return (
       <>
@@ -28,7 +30,7 @@ export const App = () => {
                   </header>
                </>
          }
-         <main className={`Main${ (pathname !== '/') ? ' Main--content' : ''}`}>
+         <main className={`Main ${!isHome ? 'Main--content' : ''}`}>
             <Breadcrubs />
             <AppRoutes />
          </main>

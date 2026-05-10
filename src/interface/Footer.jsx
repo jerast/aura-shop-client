@@ -49,7 +49,7 @@ export const Footer = () => {
 				</div>
 			</div>
 			<div className="Footer__copyright">
-				&copy; 2023 Aura. Todos los derechos reservados
+				&copy; 2023 Aura-Belleza. Todos los derechos reservados
 			</div>
 		</footer>
 	);
