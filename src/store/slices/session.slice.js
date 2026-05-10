@@ -33,6 +33,9 @@ export const sessionSlice = createSlice({
 		onLoadOrders: (state, { payload = [] }) => {
 			state.orders = payload;
 		},
+		onUpdateUser: (state, { payload }) => {
+			state.user = { ...state.user, ...payload };
+		},
 		setErrorMessage: (state, { payload }) => {
 			state.errorMessage = payload;
 		},
@@ -48,6 +51,7 @@ export const {
    onLogin, 
    onLogout, 
 	onLoadOrders, 
+	onUpdateUser,
    setErrorMessage, 
    clearErrorMessage, 
 	onAddToOrders,

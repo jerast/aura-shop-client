@@ -8,3 +8,6 @@ export * from './pages/Profile.page';
 export * from './components/OrderCard';
 export * from './components/OrderProductCart';
 export * from './components/ProfileField';
+export * from './components/CheckoutSteps';
+export * from './components/ProfileDataStep';
+export * from './components/PaymentStep';

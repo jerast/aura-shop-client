@@ -1,11 +1,11 @@
-export const ProfileField = ({ type, name, label, value, onChange, disabled, required, options = [] }) => {
+export const ProfileField = ({ type, name, label, value, onChange, disabled, required, options = [], error }) => {
    return (
       <div className="ProfileField">
          <label className="ProfileField__label">{ label }</label>
          
          {type === 'select' ? (
             <select
-               className="ProfileField__select"
+               className={`ProfileField__select ${error ? 'ProfileField__select--error' : ''}`}
                name={ name }
                value={ value }
                onChange={ onChange }
@@ -22,7 +22,7 @@ export const ProfileField = ({ type, name, label, value, onChange, disabled, req
          ) : type === 'date' ? (
             <input
                type="date"
-               className="ProfileField__input"
+               className={`ProfileField__input ${error ? 'ProfileField__input--error' : ''}`}
                name={ name }
                value={ value }
                onChange={ onChange }
@@ -32,15 +32,16 @@ export const ProfileField = ({ type, name, label, value, onChange, disabled, req
          ) : (
             <input
                type={ type }
-               className="form__input-field ProfileField__text-input"
+               className={`ProfileField__input ${error ? 'ProfileField__input--error' : ''} ${disabled ? 'ProfileField__input--disabled' : ''}`}
                name={ name }
                value={ value }
                onChange={ onChange }
                readOnly={ disabled }
-               disabled={ false }
+               disabled={ disabled }
                required={ required }
             />
          )}
+         {error && <span className="ProfileField__error">{error}</span>}
       </div>
    );
 };
