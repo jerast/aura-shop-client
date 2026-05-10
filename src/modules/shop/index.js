@@ -9,3 +9,4 @@ export * from './pages/Contact.page';
 export * from './components/ProductCard';
 export * from './components/FilterPanel';
 export * from './components/RangeSlider';
+export * from './components/Banner';
