@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { setLastPath } from '@/helpers';
@@ -14,9 +14,13 @@ export const useLoader = () => {
 	const { user } = useSelector( state => state.session );
 	const { pathname } = useLocation();
 	const dispatch = useDispatch();
+	const firstRenderRef = useRef(true);
 
 	useEffect(() => {
-		handleLoadingData();
+		if (firstRenderRef.current) {
+			firstRenderRef.current = false;
+			handleLoadingData();
+		}
 	}, []);
 	
 	const handleLoadingData = async () => {

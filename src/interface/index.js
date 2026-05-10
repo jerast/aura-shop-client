@@ -1,6 +1,6 @@
 // Containers
 export * from './NotifyBar';
-export * from './Navbar';
+export * from './Header';
 export * from './Breadcrubs';
 export * from './Footer';
 export * from './ShoppingCart';

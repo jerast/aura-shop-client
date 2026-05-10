@@ -1,5 +1,5 @@
 export const SVGLogo = ({ className }) => (
-   <svg className={ className } viewBox="0 0 4074 1690" xmlns="http://www.w3.org/2000/svg">
+   <svg className={ className } fill="currentColor" viewBox="0 0 4074 1690" xmlns="http://www.w3.org/2000/svg">
       <path d="M3717 400H3585L3228 1334H3371L3651 601.5L3931 1334H4074L3717 400Z" fill="inherit"/>
       <path d="M1492 1351C1725.62 1351 1915 1173.03 1915 953.5V399H1781V940.5C1781 1093.76 1651.61 1218 1492 1218C1332.39 1218 1203 1093.76 1203 940.5V400H1069V953.5C1069 1173.03 1258.38 1351 1492 1351Z" fill="inherit"/>
       <path d="M489.5 400.5H357.5L0.5 1334.5H143.5L423.5 602L703.5 1334.5H846.5L489.5 400.5Z" fill="inherit"/>

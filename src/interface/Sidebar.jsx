@@ -110,7 +110,7 @@ export const Sidebar = () => {
 							<ul className="Sidebar__group">
 								<li>
 									<button onClick={ (status === 'auth') ? handleLogout : handleLogin }>
-										{ (status === 'auth') ? 'Cerrar seción' : 'Iniciar sesión' }
+										{ (status === 'auth') ? 'Cerrar sesión' : 'Iniciar sesión' }
 									</button>
 								</li>
 							</ul>
