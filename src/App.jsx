@@ -30,7 +30,7 @@ export const App = () => {
                   </header>
                </>
          }
-         <main className={`Main ${!isHome ? 'Main--content' : ''}`}>
+         <main className={`Main ${isHome ? 'Main--home' : 'Main--content'}`}>
             <Breadcrubs />
             <AppRoutes />
          </main>

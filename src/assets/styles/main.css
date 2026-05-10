@@ -7,11 +7,11 @@
 	/* Principal Components */
 
 	.Header {
-		@apply bg-white my-6 py-2.5 2xl:my-10 2xl:py-5 sticky z-10 top-0;
+		@apply bg-transparent my-6 py-2.5 2xl:my-10 2xl:py-5 sticky z-10 top-0;
 	}
 
 	.NotifyBar {
-		@apply bg-violet-700 h-7 md:h-9 2xl:h-10 flex justify-center items-center text-[11px] md:text-[13px] 2xl:text-sm text-white;
+		@apply z-30 top-0 bg-violet-700 h-7 md:h-9 2xl:h-10 flex justify-center items-center text-[11px] md:text-[13px] 2xl:text-sm text-white;
 	}
 	.NotifyBar .primary {
 		@apply font-bold uppercase;
@@ -24,20 +24,20 @@
 		@apply h-12 mx-12 md:mx-16 lg:mx-32 2xl:mx-60 flex items-center gap-8 xl:gap-20;
 	}
 	.Navbar__sidebar-button {
-		@apply xl:hidden text-2xl text-gray-500 hover:text-gray-800;
+		@apply xl:hidden text-2xl text-gray-100 hover:text-gray-800;
 	}
 	.Navbar__logo {
 		@apply flex-grow md:flex-grow-0 flex justify-center;
 	}
 	.Navbar__logo svg,
 	.Navbar__logo img {
-		@apply h-10 md:h-11 2xl:h-12 fill-violet-600;
+		@apply h-10 md:h-11 2xl:h-12 fill-white;
 	}
 	.Navbar__nav {
 		@apply flex-grow hidden xl:flex justify-center lg:gap-8 2xl:gap-12;
 	}
 	.Navbar__nav a {
-		@apply text-gray-800 hover:text-violet-700 ease-in-out duration-100;
+		@apply text-white hover:text-white hover:shadow-sm ease-in-out duration-100;
 	}
 	.Navbar__controls {
 		@apply flex gap-1 lg:gap-4 flex-grow-0 md:flex-grow xl:flex-grow-0 justify-end;
@@ -46,7 +46,7 @@
 		@apply hidden md:flex max-w-[256px] 2xl:w-80;
 	}
 	.Navbar__controls > button {
-		@apply sm:h-11 sm:w-11 2xl:h-12 2xl:w-12 rounded-full hover:bg-gray-100 text-gray-700;
+		@apply sm:h-11 sm:w-11 2xl:h-12 2xl:w-12 rounded-full  bg-none text-gray-100 xl:bg-gray-100 xl:text-gray-700;
 	}
 	.Navbar__controls-cart {
 		@apply relative text-2xl flex justify-center items-center;
@@ -70,7 +70,7 @@
 		@apply border-b 
 	}
 	.Navbar__controls-login-dropdown li {
-		@apply text-left text-sm text-gray-500 
+		@apply text-left text-sm text-gray-100 
 	}
 	.Navbar__controls-login-dropdown li > * {
 		@apply block py-2 xl:py-3 hover:text-gray-800 duration-150 ease-in-out
@@ -90,7 +90,7 @@
 		@apply flex bg-gray-100 px-6 rounded-full mr-2 w-full;
 	}
 	.Search input {
-		@apply bg-transparent outline-none text-gray-700 w-full h-11;
+		@apply bg-transparent outline-none text-gray-700 w-full h-full min-h-11 text-sm;
 	}
 	.Search button {
 		@apply text-gray-400 text-xl;
@@ -98,6 +98,9 @@
 
 	.Main {
 		@apply grid mb-24 lg:mb-32 gap-20 flex-grow;
+	}
+	.Main--home {
+		@apply mt-[100vh]
 	}
 	.Main--content {
 		@apply mx-12 md:mx-16 lg:mx-32 2xl:mx-60 flex flex-col gap-10;
@@ -304,7 +307,7 @@
 
 	/* Home Page */
 .Banner {
-		@apply h-screen w-screen relative overflow-hidden;
+		@apply h-screen w-screen absolute top-0 overflow-hidden;
 	}
 	.Banner__wrapper {
 		@apply flex h-full transition-transform duration-500;
@@ -321,8 +324,9 @@
 	.Banner__caption h1 {
 		@apply text-[2.7rem] md:text-[3rem] xl:text-[3.5rem] 2xl:text-[4rem] max-w-[80%] my-8;
 	}
-	.Banner__caption button {
-		@apply bg-white text-gray-700 text-lg font-semibold w-fit px-8 py-3 rounded-full;
+	.Banner__caption button,
+	.Banner__caption a {
+		@apply bg-white text-gray-700 text-lg font-semibold w-fit px-8 py-3 rounded-full no-underline hover:bg-gray-100 transition-colors;
 	}
 	.Banner__controls {
 		@apply absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10;
@@ -332,6 +336,12 @@
 	}
 	.Banner__dot--active {
 		@apply bg-opacity-100 w-8;
+	}
+	.Banner__arrows {
+		@apply absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4 md:px-8 z-20 pointer-events-none;
+	}
+	.Banner__arrow {
+		@apply w-10 h-10 bg-white bg-opacity-50 hover:bg-opacity-100 rounded-full flex items-center justify-center text-gray-800 transition-all duration-300 pointer-events-auto cursor-pointer;
 	}
 
 	.Section {
