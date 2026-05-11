@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': {'max': '400px'},
+      },
       height: {
         'main': 'calc(100vh - 6.5rem)'
       },

@@ -29,7 +29,7 @@ export const Banner = () => {
 
 	useEffect(() => {
 		if (banners.length <= 1) return;
-		const interval = setInterval(nextSlide, 10000);
+		const interval = setInterval(nextSlide, 20000);
 		return () => clearInterval(interval);
 	}, [banners.length, nextSlide]);
 

@@ -8,7 +8,7 @@ import { FaRegUser } from 'react-icons/fa';
 import { RiLoader4Line } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 
-export const Header = () => {
+export const Header = ({ isHome }) => {
 	const { status, user } = useSelector( state => state.session );
 	const { isLoading, shoppingCart } = useSelector( state => state.app );
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -52,7 +52,7 @@ export const Header = () => {
 	};
 
 	return (
-		<header className={`Header ${isScrolled ? 'Header--scrolled' : ''}`}>
+		<header className={`Header ${isHome ? 'Header--main' : 'Header--view'} ${isScrolled ? 'Header--scrolled' : ''}`}>
 			<nav className="Navbar">
 				<button 
 					className="Navbar__sidebar-button fluid"

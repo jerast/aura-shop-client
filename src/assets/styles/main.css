@@ -7,14 +7,20 @@
 	/* Principal Components */
 
 	.Header {
-		@apply bg-transparent py-8 lg:py-12 sticky z-10 top-0 transition-all duration-300 text-gray-100;
+		@apply bg-transparent py-8 lg:py-12 sticky z-10 top-0 transition-all duration-300;
+	}
+	.Header--main {
+		@apply text-gray-100;
+	}
+	.Header--view {
+		@apply text-gray-700;
 	}
 	.Header--scrolled {
 		@apply bg-white bg-opacity-60 backdrop-blur-md shadow-sm py-6 text-gray-700;
 	}
 
 	.NotifyBar {
-		@apply z-30 top-0 bg-violet-700 text-gray-200 h-7 md:h-9 2xl:h-10 flex justify-center items-center text-[11px] md:text-[13px] 2xl:text-sm ;
+		@apply z-30 top-0 bg-violet-700 text-gray-200 h-7 md:h-9 2xl:h-10 flex justify-center items-center text-[10px] xs:text-[11px] md:text-[13px] 2xl:text-sm ;
 	}
 	.NotifyBar .primary {
 		@apply font-bold uppercase;
@@ -24,17 +30,17 @@
 	}
 
 	.Navbar {
-		@apply h-12 mx-12 md:mx-16 lg:mx-32 2xl:mx-60 flex items-center gap-8 xl:gap-20;
+		@apply h-12 md:h-12 mx-8 xs:mx-12 md:mx-16 lg:mx-32 2xl:mx-60 flex items-center gap-8 xl:gap-20;
 	}
 	.Navbar__sidebar-button {
-		@apply xl:hidden text-2xl hover:text-gray-800;
+		@apply xl:hidden text-xl xs:text-2xl hover:text-gray-800;
 	}
 	.Navbar__logo {
 		@apply flex-grow md:flex-grow-0 flex justify-center;
 	}
 	.Navbar__logo svg,
 	.Navbar__logo img {
-		@apply h-10 md:h-11 2xl:h-12 transition-all;
+		@apply h-9 xs:h-10 2xl:h-12 transition-all;
 	}
 	.Navbar__nav {
 		@apply flex-grow hidden xl:flex justify-center lg:gap-8 2xl:gap-12;
@@ -52,28 +58,28 @@
 		@apply sm:h-11 sm:w-11 2xl:h-12 2xl:w-12 rounded-full  bg-none xl:bg-gray-100 xl:text-gray-700;
 	}
 	.Navbar__controls-cart {
-		@apply relative text-2xl flex justify-center items-center;
+		@apply relative text-xl xs:text-2xl md:text-3xl flex justify-center items-center;
 	}
 	.Navbar__controls-login {
 		@apply relative hidden sm:flex
 	}
 	.Navbar__controls-login-button {
-		@apply relative w-full h-full flex justify-center items-center rounded-full text-[21px];
+		@apply relative w-full h-full flex justify-center items-center rounded-full text-lg md:text-xl ;
 	}
 	.Navbar__controls-login-button.logged {
 		@apply bg-violet-700 hover:bg-violet-600 text-white text-lg uppercase;
 	}
 	.Navbar__controls-login-dropdown {
-		@apply absolute w-52 xl:w-60 bg-white shadow-[0_10px_50px_rgba(0,0,0,0.1)] rounded-lg top-11 2xl:top-12 mt-2 right-0  z-10 px-8 py-4 flex flex-col 
+		@apply absolute w-52 xl:w-60 bg-white shadow-[0_10px_50px_rgba(0,0,0,0.1)] rounded-lg top-11 2xl:top-12 mt-2 right-0  z-10 px-4 md:px-8 py-2 md:py-4 flex flex-col 
 	}
 	.Navbar__controls-login-dropdown ul {
-		@apply py-2 xl:py-3
+		@apply py-1 xl:py-3
 	}
 	.Navbar__controls-login-dropdown ul:not(:last-child) {
 		@apply border-b 
 	}
 	.Navbar__controls-login-dropdown li {
-		@apply text-left text-sm text-gray-100 
+		@apply text-left text-sm text-gray-700 
 	}
 	.Navbar__controls-login-dropdown li > * {
 		@apply block py-2 xl:py-3 hover:text-gray-800 duration-150 ease-in-out
@@ -103,14 +109,14 @@
 		@apply grid mb-24 lg:mb-32 gap-20 flex-grow;
 	}
 	.Main--home {
-		@apply mt-[100vh]
+		@apply mt-[calc(100vh-4.5rem)] lg:mt-[calc(100vh-6rem)];
 	}
 	.Main--content {
-		@apply mx-12 md:mx-16 lg:mx-32 2xl:mx-60 flex flex-col gap-10;
+		@apply mx-8 sm:mx-12 md:mx-16 lg:mx-32 2xl:mx-60 flex flex-col gap-10;
 	}
 
 	.Breadcrumbs {
-		@apply flex flex-wrap gap-x-7 sm:gap-10 text-sm text-gray-700 mt-5 md:my-3;
+		@apply flex flex-wrap gap-x-7 sm:gap-10 text-xs sm:text-sm text-gray-700 mt-5 md:my-3;
 	}
 	.Breadcrumbs a {
 		@apply hover:text-violet-800;
@@ -123,31 +129,34 @@
 	}
 
 	.Footer {
-		@apply bg-gray-100 px-20 lg:px-32 2xl:px-60 py-14 md:py-16 text-gray-500 flex flex-wrap gap-16 shadow-lg;
+		@apply bg-gray-100 px-12 sm:px-16 md:px-20 lg:px-32 2xl:px-60 py-14 md:py-16 text-gray-500 flex flex-wrap gap-16 shadow-lg;
 	}
 	.Footer__main {
 		@apply flex flex-col items-start gap-4;
 	}
 	.Footer__logo {
-		@apply h-10 md:h-11 2xl:h-12 fill-violet-700 mb-2;
+		@apply h-8 sm:h-10 md:h-11 2xl:h-12 fill-violet-700 mb-2;
 	}
 	.Footer__caption {
-		@apply text-gray-400 text-lg;
+		@apply text-gray-400 text-base sm:text-lg;
 	}
 	.Footer__social-media {
-		@apply flex gap-6 text-xl;
+		@apply flex gap-6 text-lg sm:text-xl;
 	}
 	.Footer__social-link {
 		@apply hover:text-violet-700;
 	}
 	.Footer__section {
-		@apply flex flex-wrap gap-20 flex-grow xl:justify-center;
+		@apply flex flex-wrap gap-12 md:gap-20 flex-grow xl:justify-center;
 	}
 	.Footer__article {
 		@apply flex flex-col gap-3;
 	}
 	.Footer__title {
-		@apply text-gray-600 uppercase font-bold;
+		@apply text-gray-600 uppercase font-bold xs:text-sm;
+	}
+	.Footer__link {
+		@apply text-sm sm:text-lg;
 	}
 	.Footer__payment-methods {
 		@apply flex gap-8 items-center;
@@ -162,7 +171,7 @@
 		@apply h-[1.2rem];
 	}
 	.Footer__copyright {
-		@apply flex-grow w-full;
+		@apply flex-grow w-full text-sm sm:text-base;
 	}
 
 	.Sidebar {
@@ -172,7 +181,7 @@
 		@apply absolute -z-10 bg-black bg-opacity-40 w-full h-full;
 	}
 	.Sidebar__content {
-		@apply absolute flex flex-col bg-white left-0 h-full w-full sm:w-96 2xl:w-[30rem] overflow-y-auto py-12 px-14;
+		@apply absolute flex flex-col bg-white left-0 h-full w-full sm:w-96 2xl:w-[30rem] overflow-y-auto py-6 xs:py-12 px-9 sm:px-12 xs:px-14;
 	}
 	.Sidebar__header {
 		@apply flex justify-between sm:justify-between mb-10;
@@ -181,13 +190,13 @@
 		@apply block h-11 w-11
 	}
 	.Sidebar__close-button {
-		@apply text-2xl text-gray-500 hover:text-gray-800;
+		@apply text-xl xs:text-2xl text-gray-500 hover:text-gray-800;
 	}
 	.Sidebar__group {
-		@apply flex flex-col gap-6 text-base text-gray-500 border-b py-10;
+		@apply flex flex-col gap-5 xs:gap-6 text-sm xs:text-base text-gray-500 border-b py-6 xs:py-10;
 	}
 	.Sidebar__group a {
-		@apply hover:text-violet-800;
+		@apply hover:text-violet-700;
 	}
 	.Sidebar__group:last-of-type {
 		@apply border-none mb-auto;
@@ -203,19 +212,19 @@
 		@apply absolute -z-10 bg-black bg-opacity-40 w-full h-full;
 	}
 	.ShoppingCart__content {
-		@apply absolute flex flex-col gap-8 md:gap-6 bg-white right-0 h-full w-full sm:w-[30rem] overflow-y-auto py-12 px-8;
+		@apply absolute flex flex-col gap-5 sm:gap-6 md:gap-8 bg-white right-0 h-full w-full sm:w-[30rem] overflow-y-auto py-8 md:py-12 px-6 md:px-8;
 	}
 	.ShoppingCart__header {
-		@apply flex justify-between sm:flex-row-reverse font-bold text-2xl text-gray-700 lg:mb-8;
+		@apply flex justify-between sm:flex-row-reverse font-bold text-xl md:text-2xl text-gray-700 lg:mb-8;
 	}
 	.ShoppingCart__close-button {
-		@apply text-2xl text-gray-500 hover:text-gray-800;
+		@apply text-xl md:text-2xl text-gray-500 hover:text-gray-800;
 	}
 	.ShoppingCart__confirm {
-		@apply border-y py-5 grid items-center;
+		@apply border-y py-3 md:py-5 grid items-center;
 	}
 	.ShoppingCart__confirm p {
-		@apply flex items-center justify-center text-sm text-center whitespace-pre;
+		@apply flex items-center justify-center text-xs md:text-sm text-center whitespace-pre;
 	}
 	.ShoppingCart__confirm span {
 		@apply font-bold;
@@ -224,7 +233,7 @@
 		@apply font-bold text-blue-600;
 	}
 	.ShoppingCart__confirm button {
-		@apply flex items-center justify-between px-7 w-full font-bold text-xl h-20 bg-violet-700 hover:bg-violet-600 text-gray-100 rounded-2xl my-4;
+		@apply flex items-center justify-between px-7 w-full font-bold text-base md:text-xl h-16 md:h-20 bg-violet-700 hover:bg-violet-600 text-gray-100 rounded-2xl my-2 md:my-4;
 	}
 	.ShoppingCart__confirm.discount button {
 		@apply font-bold;
@@ -239,19 +248,19 @@
 		@apply text-gray-200 w-full;
 	}
 	.ShoppingCart__confirm button p span:first-of-type {
-		@apply text-xl text-opacity-100 no-underline place-self-end;
+		@apply text-base md:text-xl text-opacity-100 no-underline place-self-end;
 	}
 	.ShoppingCart__confirm.discount button p span:first-of-type {
-		@apply text-opacity-60 text-sm line-through place-self-end;
+		@apply text-opacity-60 text-xs md:text-sm line-through place-self-end;
 	}
 	.ShoppingCart__confirm button p span:last-of-type {
-		@apply text-opacity-60 text-sm line-through place-self-start;
+		@apply text-opacity-60 text-xs md:text-sm line-through place-self-start;
 	}
 	.ShoppingCart__confirm.discount button p span:last-of-type {
-		@apply text-xl text-opacity-100 no-underline place-self-start;
+		@apply text-base md:text-xl text-opacity-100 no-underline place-self-start;
 	}
 	.ShoppingCart__link {
-		@apply text-gray-500 hover:text-gray-700 text-center;
+		@apply text-gray-500 hover:text-gray-700 text-center text-sm md:text-base;
 	}
 	.ShoppingCart__empty {
 		@apply grid h-full content-center justify-items-center text-center font-semibold text-gray-500
@@ -260,32 +269,32 @@
 		@apply text-4xl h-16 w-16 text-white rounded-full bg-violet-600  p-4 m-8
 	}
 	.ShoppingCart__empty button {
-		@apply px-7 w-full font-bold text-xl h-16 bg-violet-700 hover:bg-violet-600 text-white rounded-2xl my-10 mb-32 ;
+		@apply px-7 w-full font-bold text-base md:text-xl h-16 bg-violet-700 hover:bg-violet-600 text-white rounded-2xl my-10 mb-32 ;
 	}
 
 	.ShoppingCartItem {
-		@apply relative focus:bg-gray-100 rounded-md grid grid-cols-[auto_minmax(0,1fr)_auto] grid-rows-[auto_auto] text-sm py-3 text-gray-800 gap-x-6 gap-y-4;
+		@apply relative focus:bg-gray-100 rounded-md grid grid-cols-[auto_minmax(0,1fr)_auto] grid-rows-[auto_auto] text-xs md:text-sm py-1 md:py-3 text-gray-800 gap-x-6 gap-y-4;
 	}
 	.ShoppingCartItem__image {
 		@apply row-start-1 row-end-3 place-self-center rounded-md shadow-sm shadow-gray-200 overflow-hidden;
 	}
 	.ShoppingCartItem__image img {
-		@apply h-20 w-20 object-center object-cover bg-gray-200 bg-opacity-70;
+		@apply h-16 w-16 md:h-20 md:w-20 object-center object-cover bg-gray-200 bg-opacity-70;
 	}
 	.ShoppingCartItem__name {
 		@apply text-gray-700 hover:text-gray-400 overflow-hidden text-ellipsis h-fit leading-[16px];
 	}
 	.ShoppingCartItem__remove {
-		@apply absolute text-xl rounded-full my-2 p-2 text-gray-600 justify-self-end -top-1 -right-2 bg-gray-100;
+		@apply absolute text-xl rounded-full my-1 p-1 md:my-2 md:p-2 text-gray-600 justify-self-end -top-1 -right-2 bg-gray-100;
 	}
 	.ShoppingCartItem__controls {
-		@apply flex border border-gray-100 shadow shadow-gray-300 rounded-full w-fit h-fit self-end text-lg items-center;
+		@apply flex border border-gray-100 shadow shadow-gray-300 rounded-full w-fit h-fit self-end items-center;
 	}
 	.ShoppingCartItem__controls button {
-		@apply h-10 w-10 flex justify-center items-center rounded-full active:bg-gray-50 text-xl disabled:text-gray-300;
+		@apply h-7 w-7 md:h-10 md:w-10 flex justify-center items-center rounded-full active:bg-gray-50 text-sm md:text-xl disabled:text-gray-300;
 	}
 	.ShoppingCartItem__controls span {
-		@apply w-7 text-center;
+		@apply w-7 text-center text-base md:text-lg;
 	}
 	.ShoppingCartItem__prices {
 		@apply row-start-1 row-end-3 col-start-3 text-end flex flex-col items-end justify-end;
@@ -294,7 +303,7 @@
 		@apply flex items-center gap-1 font-bold;
 	}
 	.ShoppingCartItem__prices li:first-of-type {
-		@apply text-gray-700 text-[15px] no-underline;
+		@apply text-gray-700 md:text-[15px] no-underline;
 	}
 	.ShoppingCartItem__prices.discount li:first-of-type {
 		@apply text-gray-400 text-[12px] line-through;
@@ -303,7 +312,7 @@
 		@apply text-gray-400 text-sm line-through;
 	}
 	.ShoppingCartItem__prices.discount li:last-of-type {
-		@apply text-blue-600 text-base no-underline;
+		@apply text-blue-600 text-sm md:text-base no-underline;
 	}
 
 
@@ -325,11 +334,11 @@
 		@apply absolute inset-0 flex flex-col place-content-center place-items-center text-center bg-black bg-opacity-40 text-white font-bold z-10;
 	}
 	.Banner__caption h1 {
-		@apply text-[2.7rem] md:text-[3rem] xl:text-[3.5rem] 2xl:text-[4rem] max-w-[80%] my-8;
+		@apply text-3xl sm:text-[2.7rem] md:text-[3rem] xl:text-[3.5rem] 2xl:text-[4rem] max-w-[80%] my-8 md:leading-[60px] lg:leading-[90px];
 	}
 	.Banner__caption button,
 	.Banner__caption a {
-		@apply bg-white text-gray-700 text-lg font-semibold w-fit px-8 py-3 rounded-full no-underline hover:bg-gray-100 transition-colors;
+		@apply bg-white text-gray-700 xs:text-lg font-semibold w-fit px-8 py-3 rounded-full no-underline hover:bg-gray-100 transition-colors;
 	}
 	.Banner__controls {
 		@apply absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-[5];
@@ -341,7 +350,7 @@
 		@apply bg-opacity-100 w-8;
 	}
 	.Banner__arrows {
-		@apply absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4 md:px-8 z-[5] pointer-events-none;
+		@apply hidden absolute bottom-12 -translate-y-1/2 w-full /* flex */ justify-between px-4 md:px-8 z-[5] pointer-events-none;
 	}
 	.Banner__arrow {
 		@apply w-10 h-10 bg-white bg-opacity-50 hover:bg-opacity-100 rounded-full flex items-center justify-center text-gray-800 transition-all duration-300 pointer-events-auto cursor-pointer;
@@ -351,10 +360,10 @@
 		@apply grid gap-10;
 	}
 	.Section--main {
-		@apply mx-10 md:mx-16 lg:mx-32 2xl:mx-60;
+		@apply mx-7 sm:mx-10 md:mx-16 lg:mx-40 2xl:mx-80;
 	}
 	.Section__title {
-		@apply font-bold text-2xl lg:text-4xl text-gray-800;
+		@apply font-bold text-2xl md:text-2xl lg:text-4xl text-gray-800;
 	}
 	.Section__content--categories {
 		@apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 w-full;
@@ -364,7 +373,7 @@
 	}
 
 	.Category {
-		@apply relative aspect-square overflow-hidden rounded-2xl hover:shadow-2xl shadow-lg hover:scale-[1.02] hover:z-10 transition-all duration-300 ease-out;
+		@apply relative aspect-square overflow-hidden rounded-2xl hover:shadow-2xl shadow-lg hover:scale-[1.02] transition-all duration-300 ease-out;
 	}
 	.Category__image {
 		@apply h-full w-full object-cover object-center transition-transform duration-300;
@@ -374,7 +383,7 @@
 	}
 	.Category__caption {
 		@apply absolute h-full w-full bg-gradient-to-t from-black/70 via-black/20 to-transparent top-0 grid place-items-end justify-center pb-6 text-white font-bold
-		text-2xl sm:text-3xl md:text-2xl xl:text-3xl;
+		text-xl sm:text-2xl md:text-2xl xl:text-3xl;
 	}
 
 
@@ -448,10 +457,10 @@
 	}
 
 	.ProductCard {
-		@apply flex flex-col h-auto gap-3 p-3 sm:p-4 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 ease-out;
+		@apply flex flex-col h-auto gap-3 p-2 sm:p-4 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 ease-out;
 	}
 	.ProductCard:hover {
-		@apply scale-[1.02] z-10;
+		@apply scale-[1.02];
 	}
 	.ProductCard__image {
 		@apply w-full aspect-square rounded-xl object-cover object-center bg-gray-200 transition-transform duration-300;
@@ -463,7 +472,7 @@
 		@apply flex-grow flex flex-col gap-1;
 	}
 	.ProductCard__name {
-		@apply block leading-[20px] text-sm font-medium text-gray-700 hover:text-violet-600 transition-colors duration-150 line-clamp-2;
+		@apply block leading-[16px] sm:leading-[20px] text-[13px] sm:text-sm md:text-lg font-medium text-gray-700 hover:text-violet-600 transition-colors duration-150 line-clamp-2;
 	}
 	.ProductCard__prices {
 		@apply mt-2 flex flex-col gap-0.5;
@@ -1026,7 +1035,7 @@
 		@apply text-gray-600 text-base md:text-lg leading-relaxed mb-4;
 	}
 	.ContactPage__values-grid {
-		@apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8;
+		@apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
 	}
 	.ContactPage__value {
 		@apply bg-gray-100 rounded-2xl p-6 md:p-8 text-center;

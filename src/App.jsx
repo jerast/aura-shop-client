@@ -22,8 +22,8 @@ export const App = () => {
       <>
          {!isAuthView &&
             <>
-               {/* <NotifyBar /> */}
-               <Header />
+               <NotifyBar />
+               <Header isHome={isHome} />
             </>
          }
          <main className={`Main ${isHome ? 'Main--home' : 'Main--content'}`}>

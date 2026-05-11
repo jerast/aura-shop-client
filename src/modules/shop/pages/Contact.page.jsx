@@ -2,8 +2,7 @@ import { MdStore, MdPhone, MdEmail, MdLocationOn } from 'react-icons/md';
 
 export const ContactPage = () => {
 	return (
-		<main className="Main">
-			<div className="Main--content ContactPage">
+		<>
 				<section className="ContactPage__hero">
 					<h1 className="ContactPage__hero-title">Sobre Aura Belleza</h1>
 					<p className="ContactPage__hero-subtitle">Belleza que inspira, calidad que perdura</p>
@@ -40,10 +39,6 @@ export const ContactPage = () => {
 						<div className="ContactPage__value">
 							<span className="ContactPage__value-title">Accesibilidad</span>
 							<p className="ContactPage__value-text">Belleza para todos, con precios diseñados para cada presupuesto.</p>
-						</div>
-						<div className="ContactPage__value">
-							<span className="ContactPage__value-title">Atención Personal</span>
-							<p className="ContactPage__value-text">Te acompañamos en cada paso, resolviendo tus dudas y escuchando tus necesidades.</p>
 						</div>
 					</div>
 				</section>
@@ -95,7 +90,6 @@ export const ContactPage = () => {
 						</div>
 					</div>
 				</section>
-			</div>
-		</main>
+		</>
 	);
 };
