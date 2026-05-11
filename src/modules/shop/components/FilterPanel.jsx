@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { RiSearchLine } from 'react-icons/ri';
 import { currencyFormatter } from '@/helpers';
 import { VscChromeClose } from 'react-icons/vsc';
 import { FiFilter } from 'react-icons/fi';
@@ -8,6 +9,7 @@ import { RangeSlider } from '@/modules/shop';
 export const FilterPanel = ({ categories, priceRanges = {} }) => {
    const [searchParams, setSearchParams] = useSearchParams();
    const [isOpen, setIsOpen] = useState(false);
+   const [searchValue, setSearchValue] = useState('');
 
    const selectedCategory = searchParams.get('category') || '';
    const selectedPriceType = searchParams.get('priceType') || 'retail';
@@ -15,6 +17,25 @@ export const FilterPanel = ({ categories, priceRanges = {} }) => {
    const priceMax = Number(searchParams.get('max') || 0);
 
    const priceRange = { min: priceMin, max: priceMax };
+
+   useEffect(() => {
+      const q = searchParams.get('q') || '';
+      setSearchValue(q);
+   }, [searchParams]);
+
+   useEffect(() => {
+      const timeoutId = setTimeout(() => {
+         setSearchParams(prev => {
+            if (searchValue) {
+               prev.set('q', searchValue);
+            } else {
+               prev.delete('q');
+            }
+            return prev;
+         }, { replace: true });
+      }, 300);
+      return () => clearTimeout(timeoutId);
+   }, [searchValue, setSearchParams]);
 
    const setCategory = useCallback((category) => {
       setSearchParams(prev => {
@@ -74,6 +95,7 @@ export const FilterPanel = ({ categories, priceRanges = {} }) => {
 
    const handleReset = () => {
       setCategory('');
+      setSearchValue('');
       const defaultRange = priceRanges.retail || { min: 0, max: 0 };
       setPriceRange(defaultRange);
       setPriceType('retail');
@@ -81,6 +103,7 @@ export const FilterPanel = ({ categories, priceRanges = {} }) => {
 
    const hasActiveFilters = selectedCategory || 
       selectedPriceType !== 'retail' || 
+      searchValue ||
       priceRange.min > (priceRanges.retail?.min || 0) || 
       priceRange.max > (priceRanges.retail?.max || 0);
 
@@ -107,6 +130,20 @@ export const FilterPanel = ({ categories, priceRanges = {} }) => {
             </div>
 
             <div className="FilterPanel__content">
+               <div className="FilterPanel__section">
+                  <label className="FilterPanel__label">Buscar</label>
+                  <div className="FilterPanel__search">
+                     <RiSearchLine className="FilterPanel__search-icon" />
+                     <input
+                        type="text"
+                        placeholder="Escribe para buscar..."
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        className="FilterPanel__search-input"
+                     />
+                  </div>
+               </div>
+
                <div className="FilterPanel__section">
                   <label className="FilterPanel__label">Categoría</label>
                   <select 
