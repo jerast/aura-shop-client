@@ -1,53 +1,88 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { currencyFormatter } from '@/helpers';
 import { VscChromeClose } from 'react-icons/vsc';
 import { FiFilter } from 'react-icons/fi';
 import { RangeSlider } from '@/modules/shop';
 
-export const FilterPanel = ({ categories, onFilterChange, priceRanges = {}, selectedPriceType = 'retail', onPriceTypeChange }) => {
+export const FilterPanel = ({ categories, priceRanges = {} }) => {
+   const [searchParams, setSearchParams] = useSearchParams();
    const [isOpen, setIsOpen] = useState(false);
-   const [selectedCategory, setSelectedCategory] = useState('');
-   const [priceRange, setPriceRange] = useState({ min: 0, max: 0 });
 
-   useEffect(() => {
-      const range = priceRanges[selectedPriceType] || { min: 0, max: 0 };
-      setPriceRange(range);
-   }, [priceRanges, selectedPriceType]);
+   const selectedCategory = searchParams.get('category') || '';
+   const selectedPriceType = searchParams.get('priceType') || 'retail';
+   const priceMin = Number(searchParams.get('min') || 0);
+   const priceMax = Number(searchParams.get('max') || 0);
+
+   const priceRange = { min: priceMin, max: priceMax };
+
+   const setCategory = useCallback((category) => {
+      setSearchParams(prev => {
+         if (category) {
+            prev.set('category', category.toLowerCase());
+         } else {
+            prev.delete('category');
+         }
+         return prev;
+      }, { replace: true });
+   }, [setSearchParams]);
+
+   const setPriceType = useCallback((priceType) => {
+      setSearchParams(prev => {
+         if (priceType && priceType !== 'retail') {
+            prev.set('priceType', priceType);
+         } else {
+            prev.delete('priceType');
+         }
+         return prev;
+      }, { replace: true });
+   }, [setSearchParams]);
+
+   const setPriceRange = useCallback((range) => {
+      setSearchParams(prev => {
+         if (range.min > 0) {
+            prev.set('min', String(range.min));
+         } else {
+            prev.delete('min');
+         }
+         if (range.max > 0) {
+            prev.set('max', String(range.max));
+         } else {
+            prev.delete('max');
+         }
+         return prev;
+      }, { replace: true });
+   }, [setSearchParams]);
 
    const handleCategoryChange = (e) => {
-      const category = e.target.value;
-      setSelectedCategory(category);
-      onFilterChange({ category, priceRange, priceType: selectedPriceType });
+      setCategory(e.target.value);
    };
 
    const handlePriceChange = (values) => {
-      const newPriceRange = { min: values[0], max: values[1] };
-      setPriceRange(newPriceRange);
-      onFilterChange({ category: selectedCategory, priceRange: newPriceRange, priceType: selectedPriceType });
+      setPriceRange({ min: values[0], max: values[1] });
    };
 
    const handlePriceInputChange = (type, value) => {
       const numValue = Number(value);
       if (isNaN(numValue)) return;
-      
-      const newRange = { ...priceRange, [type]: numValue };
-      setPriceRange(newRange);
-      onFilterChange({ category: selectedCategory, priceRange: newRange, priceType: selectedPriceType });
+      setPriceRange({ ...priceRange, [type]: numValue });
    };
 
    const handlePriceTypeChange = (type) => {
-      onPriceTypeChange(type);
-      const range = priceRanges[type] || { min: 0, max: 0 };
-      setPriceRange(range);
+      setPriceType(type);
    };
 
    const handleReset = () => {
-      setSelectedCategory('');
+      setCategory('');
       const defaultRange = priceRanges.retail || { min: 0, max: 0 };
       setPriceRange(defaultRange);
-      onPriceTypeChange('retail');
-      onFilterChange({ category: '', priceRange: defaultRange, priceType: 'retail' });
+      setPriceType('retail');
    };
+
+   const hasActiveFilters = selectedCategory || 
+      selectedPriceType !== 'retail' || 
+      priceRange.min > (priceRanges.retail?.min || 0) || 
+      priceRange.max > (priceRanges.retail?.max || 0);
 
    return (
       <>
@@ -137,7 +172,7 @@ export const FilterPanel = ({ categories, onFilterChange, priceRanges = {}, sele
                   </p>
                </div>
 
-               {(selectedCategory || selectedPriceType !== 'retail' || priceRange.min !== (priceRanges.retail?.min || 0) || priceRange.max !== (priceRanges.retail?.max || 0)) && (
+               {hasActiveFilters && (
                   <button 
                      className="FilterPanel__reset-btn"
                      onClick={handleReset}

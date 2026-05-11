@@ -13,7 +13,7 @@ export const Search = () => {
    const searchProduct = (event) => {
 		event.preventDefault();
 		if (!searchField) return;
-		navigate(`/products?name=${ searchField }`);
+		navigate(`/products?q=${ encodeURIComponent(searchField) }`);
       sidebarIsOpen && dispatch( onToogleSidebar() );
 	};
 
@@ -31,7 +31,7 @@ export const Search = () => {
             onChange={ ({ target }) => onChangeSearchField( target.value ) }
             onBlur={ () => onChangeSearchField('') }
          />
-         <button>
+         <button type="submit" disabled={ !searchField }>
             <RiSearchLine />
          </button>
       </form>
