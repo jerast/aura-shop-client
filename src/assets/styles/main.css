@@ -58,7 +58,7 @@
 		@apply sm:h-11 sm:w-11 2xl:h-12 2xl:w-12 rounded-full  bg-none xl:bg-gray-100 xl:text-gray-700;
 	}
 	.Navbar__controls-cart {
-		@apply relative text-xl xs:text-2xl md:text-3xl flex justify-center items-center;
+		@apply relative text-xl xs:text-xl md:text-[22px] flex justify-center items-center;
 	}
 	.Navbar__controls-login {
 		@apply relative hidden sm:flex
@@ -1145,10 +1145,7 @@
 	/* Filter Panel */
 
 	.FilterPanel__toggle {
-		@apply flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors;
-	}
-	.FilterPanel__toggle svg {
-		@apply text-lg;
+		@apply flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium transition-colors text-sm md:text-lg;
 	}
 	.FilterPanel__overlay {
 		@apply fixed inset-0 bg-black bg-opacity-30 z-20;
