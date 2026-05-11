@@ -13,7 +13,7 @@ export const FilterPanel = ({ categories, priceRanges = {} }) => {
 
    const selectedCategory = searchParams.get('category') || '';
    const selectedPriceType = searchParams.get('priceType') || 'retail';
-   const priceMin = Number(searchParams.get('min') || 0);
+   const priceMin = Number(0);
    const priceMax = Number(searchParams.get('max') || 0);
 
    const priceRange = { min: priceMin, max: priceMax };

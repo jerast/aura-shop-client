@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaUser } from 'react-icons/fa';
 import { shopApi } from '@/api';
 import { onUpdateUser } from '@/store';
 import { ProfileField } from './ProfileField';
+import { formatDateForInput } from '@/helpers';
 
 const documentTypes = [
    { value: 'CC', label: 'Cédula de Ciudadanía (CC)' },
@@ -26,13 +27,25 @@ export const ProfileDataStep = ({ onNext, onCancel }) => {
       name: user?.name || '',
       surname: user?.surname || '',
       dniType: user?.dniType || '',
-      dniNumber: user?.dniNumber || '',
+      dniNumber: user?.dniNumber ? String(user.dniNumber) : '',
       gender: user?.gender || '',
-      birthday: user?.birthday || '',
-      phone: user?.phone || '',
+      birthday: formatDateForInput(user?.birthday),
+      phone: user?.phone ? String(user.phone) : '',
    });
 
    const email = user?.email || '';
+
+   useEffect(() => {
+      setFormState({
+         name: user?.name || '',
+         surname: user?.surname || '',
+         dniType: user?.dniType || '',
+         dniNumber: user?.dniNumber ? String(user.dniNumber) : '',
+         gender: user?.gender || '',
+         birthday: formatDateForInput(user?.birthday),
+         phone: user?.phone ? String(user.phone) : '',
+      });
+   }, [user]);
 
    const handleChange = (e) => {
       const { name, value } = e.target;

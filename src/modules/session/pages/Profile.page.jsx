@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { shopApi } from '@/api';
 import { ProfileField } from '@/modules/session';
 import { useForm, useDocumentTitle } from '@/hooks';
+import { formatDateForInput } from '@/helpers';
 
 const documentTypes = [
    { value: 'CC', label: 'Cédula de Ciudadanía (CC)' },
@@ -44,33 +45,33 @@ export const ProfilePage = () => {
             name: user.name || '',
             surname: user.surname || '',
             dniType: user.dniType || '',
-            dniNumber: user.dniNumber || '',
+            dniNumber: user.dniNumber ? String(user.dniNumber) : '',
             gender: user.gender || '',
-            birthday: user.birthday || '',
-            phone: user.phone || '',
+            birthday: formatDateForInput(user.birthday),
+            phone: user.phone ? String(user.phone) : '',
          });
       }
    }, [user]);
 
    const email = user?.email || '';
 
-   const hasChanges = useMemo(() => {
+const hasChanges = useMemo(() => {
       if (!user || !user.id) return false;
-      
-      const userFields = {
-         name: user.name || '',
-         surname: user.surname || '',
-         dniType: user.dniType || '',
-         dniNumber: user.dniNumber || '',
-         gender: user.gender || '',
-         birthday: user.birthday || '',
-         phone: user.phone || '',
-      };
+       
+       const userFields = {
+          name: user.name || '',
+          surname: user.surname || '',
+          dniType: user.dniType || '',
+          dniNumber: user.dniNumber ? String(user.dniNumber) : '',
+          gender: user.gender || '',
+          birthday: user.birthday || '',
+          phone: user.phone ? String(user.phone) : '',
+       };
 
-      return Object.keys(userFields).some(
-         key => formState[key] !== userFields[key]
-      );
-   }, [formState, user]);
+       return Object.keys(userFields).some(
+          key => formState[key] !== userFields[key]
+       );
+    }, [formState, user]);
 
    const handleSubmit = async (e) => {
       e.preventDefault();

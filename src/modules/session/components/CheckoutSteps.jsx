@@ -4,7 +4,7 @@ import { MdLocalShipping } from 'react-icons/md';
 
 const steps = [
    { id: 1, label: 'Datos', icon: FaUser },
-   { id: 2, label: 'Envío', icon: MdLocalShipping },
+   // { id: 2, label: 'Envío', icon: MdLocalShipping },
    { id: 3, label: 'Pago', icon: FaCreditCard },
 ];
 

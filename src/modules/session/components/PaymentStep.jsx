@@ -59,17 +59,15 @@ export const PaymentStep = ({ userData, onBack, onCancel }) => {
       return Object.keys(newErrors).length === 0;
    };
 
-   const handleSubmit = async (e) => {
-      e.preventDefault();
-      if (!validate()) return;
+const handleSubmit = async (e) => {
+       e.preventDefault();
+       if (!validate()) return;
 
-      setIsProcessing(true);
+       setIsProcessing(true);
 
-      setTimeout(() => {
-         dispatch(startSavingOrder());
-         navigate('/account/orders');
-      }, 2000);
-   };
+       await dispatch(startSavingOrder());
+       navigate('/account/orders');
+    };
 
    return (
       <div className="CheckoutStep">

@@ -151,10 +151,12 @@ export const startSavingOrder = () =>
 			removeLastOrder();
 			removeLastShoppingCart();
 			
+			dispatch( onSaveEnds() );
+			return true;
 		} catch (error) {
 			console.error('Something fails at Saving Order');
+			dispatch( onSaveEnds() );
+			return false;
 		}
-
-		dispatch( onSaveEnds() );
 	};
 
