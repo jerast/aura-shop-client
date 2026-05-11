@@ -1,11 +1,14 @@
 import { useSelector } from 'react-redux'
 import { OrderCard } from '@/modules/session'
 import { EmptyState } from '@/interface'
+import { useDocumentTitle } from '@/hooks'
 
 export const OrdersPage = () => {
 	const { orders } = useSelector( state => state.session )
 	
 	const { isLoading } = useSelector( state => state.app )
+
+	useDocumentTitle('Mis Pedidos');
 	
 	if ( isLoading ) return (
 		<section className="Section">

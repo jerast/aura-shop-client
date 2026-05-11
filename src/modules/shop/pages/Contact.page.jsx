@@ -1,6 +1,9 @@
+import { useDocumentTitle } from '@/hooks';
 import { MdStore, MdPhone, MdEmail, MdLocationOn } from 'react-icons/md';
 
 export const ContactPage = () => {
+	useDocumentTitle('Contacto');
+	
 	return (
 		<>
 				<section className="ContactPage__hero">

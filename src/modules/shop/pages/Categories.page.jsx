@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { resize } from '@/helpers';
 import { EmptyState } from '@/interface';
+import { useDocumentTitle } from '@/hooks';
 
 export const CategoriesPage = () => {
 	const { isLoading } = useSelector( state => state.app );
 	const { categories } = useSelector( state => state.shop );
+
+	useDocumentTitle('Categorías');
 
 	if ( isLoading ) return (
 		<section className="Section">

@@ -2,12 +2,15 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { clearErrorMessage } from '@/store';
 import { LoginForm, SignupForm } from '@/modules/auth';
+import { useDocumentTitle } from '@/hooks';
 
 export const AuthPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const isLogin = location.pathname === '/login';
+
+	useDocumentTitle(isLogin ? 'Iniciar Sesión' : 'Crear Cuenta');
 
 	const handleSwitchForm = () => {
 		dispatch( clearErrorMessage() );

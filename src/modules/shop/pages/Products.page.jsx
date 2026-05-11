@@ -5,12 +5,15 @@ import { ProductCard, FilterPanel } from '@/modules/shop';
 import { EmptyState } from '@/interface';
 import { filters, queryParams, sorters, toCapitalize } from '@/helpers';
 import { applyFilters, getPriceRanges } from '@/helpers/productFilters';
+import { useDocumentTitle } from '@/hooks';
 
 export const ProductsPage = () => {
 	const { isLoading } = useSelector( state => state.app );
 	const { products, categories } = useSelector( state => state.shop );
 	const { search, pathname } = useLocation();
 	const [title, setTitle] = useState('Productos');
+
+	useDocumentTitle(title);
 	const [selectedPriceType, setSelectedPriceType] = useState('retail');
 	const [filtersState, setFiltersState] = useState({
 		category: '',

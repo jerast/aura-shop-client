@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearActiveOrder, onLoadEnds, onLoadStarts, startLoadingSelectedOrder } from '@/store';
 import { MdArrowBack, MdReceipt, MdCalendarToday, MdShoppingBag, MdLocalOffer, MdReceiptLong } from 'react-icons/md';
 import { currencyFormatter, dateFormatter, resize } from '@/helpers';
+import { useDocumentTitle } from '@/hooks';
 
 const statusConfig = {
    pending: { label: 'Pendiente', bg: 'bg-amber-100', text: 'text-amber-700', border: 'border-amber-200' },
@@ -18,6 +19,8 @@ export const OrderPage = () => {
    const { isLoading, activeOrder } = useSelector( state => state.app );
    const { products } = useSelector( state => state.shop );
    const dispatch = useDispatch();
+
+   useDocumentTitle(`Pedido #${id}`);
 
    useEffect(() => { 
       if (!isLoading) {

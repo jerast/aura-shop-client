@@ -1,11 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Banner } from '@/modules/shop';
 import { resize } from '@/helpers';
 import { ProductCard } from '@/modules/shop';
+import { useDocumentTitle } from '@/hooks';
 
 export const HomePage = () => {
 	const { categories, products } = useSelector( state => state.shop );
+
+	useDocumentTitle();
 
 	return (
 		<>

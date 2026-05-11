@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { currencyFormatter, resize } from '@/helpers'
-import { useShoppingCart } from '@/hooks'
+import { useShoppingCart, useDocumentTitle } from '@/hooks'
 import { clearActiveProduct, onLoadEnds, onLoadStarts, startLoadingSelectedProduct } from '@/store'
 import { MdOutlineAdd, MdOutlineDelete, MdOutlineRemove } from 'react-icons/md'
 import { TbDiscountCheckFilled } from 'react-icons/tb'
@@ -17,6 +17,8 @@ export const ProductPage = () => {
 		onReduceToShoppingCart,
 		onRemoveToShoppingCart 
 	} = useShoppingCart( id )
+
+	useDocumentTitle(activeProduct?.name);
 	
 	useEffect(() => { 
 		if (!isLoading) {

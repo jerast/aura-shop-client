@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect, useMemo } from 'react';
 import { shopApi } from '@/api';
 import { ProfileField } from '@/modules/session';
-import { useForm } from '@/hooks';
+import { useForm, useDocumentTitle } from '@/hooks';
 
 const documentTypes = [
    { value: 'CC', label: 'Cédula de Ciudadanía (CC)' },
@@ -27,6 +27,8 @@ const initialFormState = {
 export const ProfilePage = () => {
    const { user } = useSelector(state => state.session);
    
+   useDocumentTitle('Mi Perfil');
+
    const [isSaving, setIsSaving] = useState(false);
    const [successMessage, setSuccessMessage] = useState('');
 

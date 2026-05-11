@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdArrowBack } from 'react-icons/md';
 import { startLoadingCategories, startLoadingProducts } from '@/store';
 import { CheckoutSteps, ProfileDataStep, PaymentStep } from '@/modules/session';
+import { useDocumentTitle } from '@/hooks';
 
 export const Checkout = () => {
-   const dispatch = useDispatch();
-   const navigate = useNavigate();
-   const { isLoading, shoppingCart } = useSelector(state => state.app);
-   const { user } = useSelector(state => state.session);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const { isLoading, shoppingCart } = useSelector(state => state.app);
+	const { user } = useSelector(state => state.session);
+
+	useDocumentTitle('Finalizar Compra');
    const [currentStep, setCurrentStep] = useState(1);
    const [completedSteps, setCompletedSteps] = useState([]);
    const [userData, setUserData] = useState(null);
