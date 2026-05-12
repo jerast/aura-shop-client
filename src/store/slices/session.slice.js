@@ -36,6 +36,12 @@ export const sessionSlice = createSlice({
 		onUpdateUser: (state, { payload }) => {
 			state.user = { ...state.user, ...payload };
 		},
+		onUpdateOrderStatus: (state, { payload }) => {
+			const index = state.orders.findIndex(order => order._id === payload.id);
+			if (index !== -1) {
+				state.orders[index].status = payload.status;
+			}
+		},
 		setErrorMessage: (state, { payload }) => {
 			state.errorMessage = payload;
 		},
@@ -52,6 +58,7 @@ export const {
    onLogout, 
 	onLoadOrders, 
 	onUpdateUser,
+	onUpdateOrderStatus,
    setErrorMessage, 
    clearErrorMessage, 
 	onAddToOrders,

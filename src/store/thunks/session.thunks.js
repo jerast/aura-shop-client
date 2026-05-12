@@ -11,6 +11,7 @@ import {
 	clearOrder,
 	clearShoppingCart,
 	onReduceProductStock,
+	onUpdateOrderStatus,
 	startLoadingProducts,
 	clearErrorMessage,  
 } from '@/store';
@@ -99,12 +100,12 @@ export const startLoadingOrders = () =>
 	};
 
 export const startCancelOrderStatus = (orderId) =>
-	async (dispatch) => {
+	async (dispatch, getState) => {
 		try {
-			const { data } = await shopApi.put(`/orders/${orderId}`, { newStatus: 'canceled' });
+			const { data } = await shopApi.put(`/orders/cancel/${orderId}`);
 
 			if ( data.ok ) {
-				dispatch( startLoadingOrders() );
+				dispatch( onUpdateOrderStatus({ id: orderId, status: 'canceled' }) );
 			}
 
 			return data.ok;
