@@ -156,7 +156,7 @@
 		@apply text-gray-600 uppercase font-bold xs:text-sm;
 	}
 	.Footer__link {
-		@apply text-sm sm:text-lg;
+		@apply text-sm sm:text-base;
 	}
 	.Footer__payment-methods {
 		@apply flex gap-8 items-center;
