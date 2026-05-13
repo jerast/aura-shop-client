@@ -20,7 +20,7 @@ export const useFilteredProducts = () => {
    const filteredProducts = useMemo(() => {
       if (!products.length) return [];
 
-      let result = products;
+      let result = products.filter(product => product.status !== false);
 
       if ( searchQuery ) {
          result = result.filter(product => 

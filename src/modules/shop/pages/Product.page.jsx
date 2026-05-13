@@ -52,21 +52,27 @@ export const ProductPage = () => {
 				</div>
 				<span className="ProductSection__description">{ activeProduct.description }</span>
 				{/* <span>Left: { activeProduct.stock }</span> */}
-				<div className="ProductSection__controls">
-					<div>
-						<button onClick={ onReduceToShoppingCart } disabled={ productCounter === 0 } >
-							<MdOutlineRemove />
-						</button>
-						<span>{ productCounter }</span>
-						<button onClick={ onAddToShoppingCart }>
-							<MdOutlineAdd />
-						</button>
+				{activeProduct.status === false ? (
+					<div className="ProductSection__disabled">
+						<span>Este producto no está disponible actualmente</span>
 					</div>
-					<div>
-						<button className="fluid" onClick={ onAddToShoppingCart }>Añadir al carrito +</button>
-						{ (productCounter > 0) && <button onClick={ onRemoveToShoppingCart }><MdOutlineDelete /></button> }
+				) : (
+					<div className="ProductSection__controls">
+						<div>
+							<button onClick={ onReduceToShoppingCart } disabled={ productCounter === 0 } >
+								<MdOutlineRemove />
+							</button>
+							<span>{ productCounter }</span>
+							<button onClick={ onAddToShoppingCart }>
+								<MdOutlineAdd />
+							</button>
+						</div>
+						<div>
+							<button className="fluid" onClick={ onAddToShoppingCart }>Añadir al carrito +</button>
+							{ (productCounter > 0) && <button onClick={ onRemoveToShoppingCart }><MdOutlineDelete /></button> }
+						</div>
 					</div>
-				</div>
+				)}
 			</div>
 		</section>
 	)

@@ -441,6 +441,12 @@
 	.ProductSection__controls div:last-child button:nth-child(2) {
 		@apply hidden md:flex h-10 w-10 text-lg items-center justify-center rounded-full  active:bg-gray-300 border shadow-sm shadow-gray-400;
 	}
+	.ProductSection__disabled {
+		@apply py-4 px-6 bg-gray-100 rounded-xl text-center text-gray-500;
+	}
+	.ProductSection__disabled span {
+		@apply font-medium;
+	}
 
 
 
