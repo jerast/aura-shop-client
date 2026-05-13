@@ -1,9 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path'
+import path from 'path';
 
-
-// https://vitejs.dev/config/
 export default defineConfig({
 	base: '/',
 	plugins: [react()],
@@ -12,5 +10,11 @@ export default defineConfig({
 			'@': path.resolve(__dirname, './src'),
 			'@test': path.resolve(__dirname, './test'),
 		},
+	},
+	test: {
+		environment: 'jsdom',
+		globals: true,
+		setupFiles: ['./test/setup.js'],
+		include: ['test/**/*.test.{js,jsx}'],
 	},
 });

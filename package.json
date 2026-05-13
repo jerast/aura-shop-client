@@ -9,7 +9,10 @@
     "host": "vite --host",
     "prod": "http-server dist/",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run --config vitest.config.js",
+    "test:watch": "vitest --config vitest.config.js",
+    "test:ui": "vitest --ui --config vitest.config.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -23,13 +26,19 @@
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
-    "@vitejs/plugin-react": "^3.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/ui": "1.6.0",
     "autoprefixer": "^10.4.14",
+    "jsdom": "^29.1.1",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2",
     "tailwindcss-animate": "^1.0.5",
-    "vite": "^4.0.0"
+    "vite": "^4.0.0",
+    "vitest": "1.6.0"
   }
 }
