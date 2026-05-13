@@ -74,8 +74,9 @@ export const OrderPage = () => {
    const totalItems = activeOrder.list.reduce((acc, item) => acc + item.count, 0);
    const discountAmount = activeOrder.discount 
       ? activeOrder.list.reduce((acc, item) => {
-         const product = products.find(p => p.id === item.product);
-         return acc + (product?.prices.retail - product?.prices.wholesale) * item.count;
+         const retailPrice = item.prices?.retail || 0;
+         const wholesalePrice = item.prices?.wholesale || 0;
+         return acc + (retailPrice - wholesalePrice) * item.count;
       }, 0)
       : 0;
 
@@ -163,25 +164,25 @@ export const OrderPage = () => {
                   <h2>Productos ({ activeOrder.list.length })</h2>
                </div>
 
-               <div className="OrderPage__products-list">
+<div className="OrderPage__products-list">
                   {activeOrder.list.map((item) => {
                      const product = products.find(p => p.id === item.product);
-                     if (!product) return null;
-
-                     const unitPrice = activeOrder.discount ? product.prices.wholesale : product.prices.retail;
+                     const retailPrice = item.prices?.retail || product?.prices?.retail || 0;
+                     const wholesalePrice = item.prices?.wholesale || product?.prices?.wholesale || 0;
+                     const unitPrice = activeOrder.discount ? wholesalePrice : retailPrice;
                      const subtotal = unitPrice * item.count;
 
                      return (
                         <div key={ item.product } className="OrderPage__product">
-<img 
-                               className="OrderPage__product-image"
-                               src={ resize( product.image, 100, 'products' ) }
-                               alt={ product.name }
-                               onError={(e) => e.target.style.display = 'none'}
-                            />
+                           <img 
+                              className="OrderPage__product-image"
+                              src={ product ? resize( product.image, 100, 'products' ) : '' }
+                              alt={ product?.name || 'Producto' }
+                              onError={(e) => e.target.style.display = 'none'}
+                           />
                            <div className="OrderPage__product-info">
-                              <Link to={`/products/${ product.id }`} className="OrderPage__product-name">
-                                 { product.name }
+                              <Link to={`/products/${ item.product }`} className="OrderPage__product-name">
+                                 { product?.name || 'Producto' }
                               </Link>
                               <span className="OrderPage__product-quantity">
                                  { item.count } {item.count > 1 ? 'unidades' : 'unidad'}
