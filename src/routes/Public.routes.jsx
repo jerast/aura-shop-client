@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { AuthPage } from '@/modules/auth';
 import { CategoriesPage, ProductsPage, HomePage, ProductPage, ContactPage } from '@/modules/shop';
+import { NotFound } from '@/interface';
 
 export const PublicRoutes = () => {
 	return (
@@ -13,7 +14,7 @@ export const PublicRoutes = () => {
 			<Route path="/login" element={ <AuthPage /> } />
 			<Route path="/signup" element={ <AuthPage /> } />
 			<Route path="/contact" element={ <ContactPage /> } />
-			<Route path="*" element={ <h1>Not Found</h1> } />
+			<Route path="*" element={ <NotFound /> } />
 		</Routes>
 	);
 };

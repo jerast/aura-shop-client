@@ -11,3 +11,4 @@ export * from './Search';
 export * from './components/ShoppingCartItem';
 export * from './components/DropdownButton';
 export * from './components/EmptyState';
+export * from './components/NotFound';

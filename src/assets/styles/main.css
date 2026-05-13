@@ -1262,4 +1262,31 @@
 	.EmptyState__action {
 		@apply px-6 py-3 rounded-full bg-violet-700 text-white font-medium hover:bg-violet-600 transition-colors;
 	}
+
+	/* Not Found */
+	.NotFound {
+		@apply min-h-[60vh] flex items-center justify-center px-4;
+	}
+	.NotFound__content {
+		@apply text-center max-w-md;
+	}
+	.NotFound__icon {
+		@apply w-32 h-32 mx-auto mb-6 flex items-center justify-center bg-violet-100 rounded-full;
+	}
+	.NotFound__icon svg {
+		@apply text-7xl text-violet-700;
+	}
+	.NotFound__title {
+		@apply text-7xl md:text-8xl font-bold text-gray-800 mb-4;
+	}
+	.NotFound__message {
+		@apply text-lg text-gray-500 mb-8;
+	}
+	.NotFound__button {
+		@apply inline-flex items-center gap-3 px-8 py-4 rounded-full bg-violet-700 text-white font-semibold 
+		   hover:bg-violet-600 transition-colors;
+	}
+	.NotFound__button svg {
+		@apply text-xl;
+	}
 }
