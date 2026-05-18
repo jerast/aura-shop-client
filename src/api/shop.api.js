@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const shopApi = axios.create({
-	baseURL: import.meta.env.VITE_AURAB_APIURL || 'http://192.168.0.1:1000/',
+	baseURL: `${import.meta.env.VITE_AURAB_APIURL}/api` || 'http://192.168.0.1:1000/',
 });
 
 shopApi.interceptors.request.use( config => {
