@@ -1,18 +1,11 @@
-import { useLocation } from 'react-router-dom';
 import { ProductCard, FilterPanel } from '@/modules/shop';
 import { EmptyState } from '@/interface';
 import { useDocumentTitle, useFilteredProducts } from '@/hooks';
-import { toCapitalize } from '@/helpers';
 
 export const ProductsPage = () => {
-   const { pathname } = useLocation();
-   const { isLoading, products, categories, priceRanges, filteredProducts, title: hookTitle } = useFilteredProducts();
+   const { isLoading, products, categories, priceRanges, filteredProducts } = useFilteredProducts();
 
-   const pageCategory = pathname.slice(1).split('/').at(-1);
-   const isCategoryPage = pageCategory && categories.some(c => c.name.toLowerCase() === pageCategory);
-   const title = isCategoryPage ? toCapitalize(pageCategory) : hookTitle;
-
-   useDocumentTitle(title);
+   useDocumentTitle('Productos');
 
    if ( isLoading ) return (
       <section className="Section">
@@ -39,7 +32,7 @@ export const ProductsPage = () => {
    if ( !products.length ) return (
       <section className="Section">
          <div className="ProductsPage__header">
-            <h1 className="Section__title">{title}</h1>
+            <h1 className="Section__title">Productos</h1>
             <FilterPanel 
                categories={categories}
                priceRanges={priceRanges}
@@ -52,7 +45,7 @@ export const ProductsPage = () => {
    return (
       <section className="Section">
          <div className="ProductsPage__header">
-            <h1 className="Section__title">{title}</h1>
+            <h1 className="Section__title">Productos</h1>
             <FilterPanel 
                categories={categories}
                priceRanges={priceRanges}
@@ -76,3 +69,5 @@ export const ProductsPage = () => {
       </section>
    );
 };
+
+export default ProductsPage;

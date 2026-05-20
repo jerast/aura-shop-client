@@ -110,10 +110,11 @@ export const FilterPanel = ({ categories, priceRanges = {} }) => {
    return (
       <>
          <button 
-            className="FilterPanel__toggle"
+            className={`FilterPanel__toggle ${hasActiveFilters ? 'FilterPanel__toggle--active' : ''}`}
             onClick={() => setIsOpen(!isOpen)}
          >
             <FiFilter />
+            {hasActiveFilters && <span className="FilterPanel__toggle-indicator" />}
             <span>Filtros</span>
          </button>
 
