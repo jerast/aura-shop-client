@@ -41,7 +41,7 @@ export const OrderCard = ({ order }) => {
                   <MdVisibility className="text-xl text-muted-foreground" />
                </Link>
                {
-                  order.status !== 'canceled' && 
+                  order.status === 'pending' && 
                   <div ref={userMenuRef} className='relative'>
                      <button
                         type="button"
