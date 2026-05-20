@@ -56,6 +56,16 @@ describe('useFilteredProducts', () => {
 		expect(disabledProducts).toHaveLength(0);
 	});
 
+	it('should filter out products with hidden true', () => {
+		const productsWithHidden = [
+			...mockProducts,
+			createMockProduct({ id: '5', name: 'Hidden Product', hidden: true }),
+		];
+		const { result } = renderHook('/', productsWithHidden, mockCategories);
+		const hiddenProducts = result.current.filteredProducts.filter(p => p.hidden === true);
+		expect(hiddenProducts).toHaveLength(0);
+	});
+
 	it('should filter by search query', () => {
 		const { result } = renderHook('/?q=crema', mockProducts, mockCategories);
 		expect(result.current.filteredProducts.some(p => p.name === 'Crema Facial')).toBe(true);
