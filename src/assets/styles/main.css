@@ -463,13 +463,13 @@
 	}
 
 	.ProductCard {
-		@apply flex flex-col h-auto gap-3 p-2 sm:p-4 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 ease-out;
+		@apply flex flex-col h-auto gap-3 p-2 sm:p-4 bg-white rounded-2xl shadow-[#0000000d_0px_2px_2px_2px] hover:shadow-xl transition-all duration-300 ease-out;
 	}
 	.ProductCard:hover {
 		@apply scale-[1.02];
 	}
 	.ProductCard__image {
-		@apply w-full aspect-square rounded-xl object-cover object-center bg-gray-200 transition-transform duration-300;
+		@apply w-full aspect-square rounded-xl object-cover object-center transition-transform duration-300;
 	}
 	.ProductCard:hover .ProductCard__image {
 		@apply scale-105;
